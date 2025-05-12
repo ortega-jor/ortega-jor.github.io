@@ -3,47 +3,145 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jorge - Robotics & Automation Engineer</title>
+    <title>Jorge Ortega</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial; sans-serif;
-            max-width: 800px;
-            margin: auto; 
-            padding: 20px; 
-            background-color: #87bef5; /* Soft light blue background */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f2f5;
             color: #2c3e50;
+            margin: 0;
+            padding: 0;
             text-align: center;
         }
-        h1, h2 { color: #2c3e50; }
-        a { color: #2980b9; text-decoration: none; }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.2em;
+        }
+
+        p.subtitle {
+            font-size: 1.2em;
+            color: #555;
+        }
+
         img.profile {
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        ul { text-align: left; }
+
+        .btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1c5d85;
+        }
+
+        h2 {
+            border-bottom: 2px solid #ddd;
+            display: inline-block;
+            margin-top: 40px;
+            padding-bottom: 10px;
+        }
+
+        .about, .contact, .projects {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .about p {
+            text-align: justify;
+            line-height: 1.6; /* Improves readability */
+        }
+
+        .projects {
+            display: grid;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .card a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact p {
+            margin: 8px 0;
+        }
+
+        @media (max-width: 600px) {
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 601px) {
+            .projects {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <img src="profile.jpg" alt="Profile Picture" class="profile">
-    <h1>Jorge</h1>
-    <p><strong>Robotics, Electronic and Automation Engineer</strong></p>
-    <p>Welcome to my portfolio! I am passionate about developing innovative robotics and automation solutions that make real-world impacts.</p>
+    <div class="container">
+        <img src="profile.jpg" alt="Profile Picture" class="profile">
+        <h1>Jorge Ortega</h1>
+        <p class="subtitle"><strong>Industrial Electronic & Automation Engineer</strong></p>
 
-    <h2>Resume</h2>
-    <p><a href="Resume.pdf" download>Download My Resume (PDF)</a></p>
+        <h2>About Me</h2>
+        <div class="about">
+            <p>I graduated in 2024 with a Bachelor of Science in Industrial Electronics and Automation Engineering from the University of León, Spain. I am currently pursuing a Master of Science in Robotics at Northeastern University, where I am further developing my expertise in robotics and autonomous systems.</p>
+            <p>I am passionate about the design and development of robotic solutions, with a strong interest in the automotive industry and autonomous technologies. Outside of engineering, I am an avid sports enthusiast who values teamwork, discipline, and continuous self-improvement—qualities that I bring to both my personal and professional endeavors.</p>
+        </div>
 
-    <h2>Projects</h2>
-    <ul>
-        <li><strong>Stable Walking on Biped Robot using RL</strong> – Trained a customized biped robot in the MuJoCo Walker2D-v5 environment using a PPO algorithm based on the Stable Baselines3 library, achieving stable and consistent forward locomotion. <a href="https://github.com/ortega-jor/RL-project">View Code</a></li>
-        <li><strong>Synchronization and Coordination of Mobile Robots</strong> – PLC-controlled conveyor belt prototype. <a href="https://github.com/ortega-jor/conveyor-system">View Code</a></li>
-    </ul>
+        <a href="Resume.pdf" class="btn" download>📄 Download My Resume</a>
 
-    <h2>Contact</h2>
-    <p>Email: ortega.jor@northeastern.edu</p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile/">Your LinkedIn</a></p>
-    <p>GitHub: <a href="https://github.com/ortega-jor">ortega-jor</a></p>
+        <h2>Projects</h2>
+        <div class="projects">
+            <div class="card">
+                <h3>Stable Walking on Biped Robot using RL</h3>
+                <p>Trained a customized biped robot in the MuJoCo Walker2D-v5 environment using PPO based on Stable Baselines3, achieving stable forward locomotion.</p>
+                <a href="https://github.com/ortega-jor/RL-project">View Code →</a>
+            </div>
+            <div class="card">
+                <h3>Synchronization & Coordination of Mobile Robots</h3>
+                <p>PLC-controlled conveyor belt prototype for synchronized robot coordination and automation.</p>
+                <a href="https://github.com/ortega-jor/conveyor-system">View Code →</a>
+            </div>
+        </div>
+
+        <h2>Contact</h2>
+        <div class="contact">
+            <p>📧 Email: <a href="mailto:ortega.jor@northeastern.edu">ortega.jor@northeastern.edu</a></p>
+            <p>💼 LinkedIn: <a href="www.linkedin.com/in/jorge-ortega-camazon">Jorge Ortega</a></p>
+            <p>📂 GitHub: <a href="https://github.com/ortega-jor">ortega-jor</a></p>
+        </div>
+    </div>
 </body>
 </html>
