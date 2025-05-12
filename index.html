@@ -69,7 +69,7 @@
 
         .about p {
             text-align: justify;
-            line-height: 1.6; /* Improves readability */
+            line-height: 1.5; /* Improves readability */
         }
 
         .projects {
@@ -82,7 +82,6 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            text-align: left;
         }
 
         .card a {
@@ -93,6 +92,24 @@
 
         .contact p {
             margin: 8px 0;
+        }
+
+        /* Fade-in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 600px) {
@@ -109,35 +126,35 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="profile.jpg" alt="Profile Picture" class="profile">
-        <h1>Jorge Ortega</h1>
-        <p class="subtitle"><strong>Industrial Electronic & Automation Engineer</strong></p>
+    <div class="container fade-in delay-1">
+        <img src="profile.jpg" alt="Profile Picture" class="profile fade-in delay-1">
+        <h1 class="fade-in delay-1">Jorge Ortega</h1>
+        <p class="subtitle fade-in delay-1"><strong>Industrial Electronic & Automation Engineer</strong></p>
 
-        <h2>About Me</h2>
-        <div class="about">
+        <h2 class="fade-in delay-1">About Me</h2>
+        <div class="about fade-in delay-1">
             <p>I graduated in 2024 with a Bachelor of Science in Industrial Electronics and Automation Engineering from the University of León, Spain. I am currently pursuing a Master of Science in Robotics at Northeastern University, where I am further developing my expertise in robotics and autonomous systems.</p>
             <p>I am passionate about the design and development of robotic solutions, with a strong interest in the automotive industry and autonomous technologies. Outside of engineering, I am an avid sports enthusiast who values teamwork, discipline, and continuous self-improvement—qualities that I bring to both my personal and professional endeavors.</p>
         </div>
 
-        <a href="Resume.pdf" class="btn" download>📄 Download My Resume</a>
+        <a href="Resume.pdf" class="btn fade-in delay-2" download>📄 Download My Resume</a>
 
-        <h2>Projects</h2>
-        <div class="projects">
-            <div class="card">
+        <h2 class="fade-in delay-2">Projects</h2>
+        <div class="projects fade-in delay-2">
+            <div class="card fade-in delay-2">
                 <h3>Stable Walking on Biped Robot using RL</h3>
                 <p>Trained a customized biped robot in the MuJoCo Walker2D-v5 environment using PPO based on Stable Baselines3, achieving stable forward locomotion.</p>
                 <a href="https://github.com/ortega-jor/RL-project">View Code →</a>
             </div>
-            <div class="card">
+            <div class="card fade-in delay-2">
                 <h3>Synchronization & Coordination of Mobile Robots</h3>
-                <p>PLC-controlled conveyor belt prototype for synchronized robot coordination and automation.</p>
+                <p>To be changed.</p>
                 <a href="https://github.com/ortega-jor/conveyor-system">View Code →</a>
             </div>
         </div>
 
-        <h2>Contact</h2>
-        <div class="contact">
+        <h2 class="fade-in delay-3">Contact</h2>
+        <div class="contact fade-in delay-3">
             <p>📧 Email: <a href="mailto:ortega.jor@northeastern.edu">ortega.jor@northeastern.edu</a></p>
             <p>💼 LinkedIn: <a href="www.linkedin.com/in/jorge-ortega-camazon">Jorge Ortega</a></p>
             <p>📂 GitHub: <a href="https://github.com/ortega-jor">ortega-jor</a></p>
