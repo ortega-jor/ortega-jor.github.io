@@ -17,6 +17,7 @@ I graduated in 2024 with a Bachelor of Science in Industrial Electronics and Aut
 - Professional background and academic highlights
 - Showcase of selected projects:
   - Stable walking for a biped robot using reinforcement learning (MuJoCo, PPO)
+  - Elevator Control System Optimization
   - Multi-robot coordination and SLAM with ROS and Gazebo
   - Development of a low-cost multifunctional autonomous robot
 - Downloadable resume
