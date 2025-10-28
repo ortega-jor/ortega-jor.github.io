@@ -109,6 +109,16 @@
       text-align: justify;
     }
 
+    .container h3 {
+      text-align: left;
+      text-align: justify;
+    }
+
+    .container ul {
+      text-align: left;
+      text-align: justify;
+    }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -159,50 +169,50 @@
   </header>
 
   <div class="container">
-    <!-- Hero Image (placeholder - you can add your own image) -->
+    <!-- Hero Image -->
     <!-- <div class="project-hero">
       <img src="../assets/images/elevator-system.png" alt="Elevator Control System">
     </div> -->
 
-    <!-- Overview -->
-    <h2>Overview</h2>
+    <!-- Project Overview -->
+    <h2>Project Overview</h2>
     <p>
-      This project focuses on designing and simulating an optimized multi-elevator control system using MATLAB. 
-      The objective was to improve passenger travel time and energy efficiency in a multi-story building environment. 
-      The system implements intelligent scheduling algorithms to minimize wait times and optimize elevator dispatching 
-      based on real-time demand patterns. Through comprehensive simulations, the optimized control strategy demonstrated 
-      significant improvements in both operational efficiency and user experience compared to traditional elevator 
-      control methods.
+      The main objective of this project is to design, implement, and compare multiple control strategies for the
+      operation and coordination of two elevators in a multi-floor building.
+      The elevator control algorithms aim to reduce total service time, minimize energy use, and ensure balanced 
+      request handling between elevators. The complete scope of the project was carried out using MATLAB.
     </p>
 
-    <!-- Key Features -->
-    <h2>Key Features</h2>
+    <!-- Controllers Implemented -->
+    <h2>Controllers Implemented</h2>
+    <h3>🔹 First Call Controller (FCC)</h3>
     <ul>
-      <li>Intelligent elevator scheduling algorithm for multi-car systems</li>
-      <li>Real-time demand pattern analysis and prediction</li>
-      <li>Energy consumption optimization strategies</li>
-      <li>Comprehensive MATLAB simulation environment</li>
-      <li>Performance metrics tracking (wait time, travel time, energy usage)</li>
-      <li>Comparison with traditional control strategies</li>
+      <li><strong>Implementation details:</strong> Uses MATLAB's Parallel Computing Toolbox with <code>parfeval</code> for asynchronous task execution</li>
+      <li><strong>Queue Management:</strong> Maintains a FIFO (First-In-First-Out) queue structure for incoming requests</li>
+      <li><strong>Conflict resolution:</strong> Implements mutex locking and configurable parallel pools to prevent both elevators ro fulfull the same request</li>
     </ul>
 
-    <!-- Technologies -->
-    <h2>Technologies Used</h2>
+    <h3>🔹 Closest Call Controller (CCC)</h3>
     <ul>
-      <li>MATLAB/Simulink</li>
-      <li>Control Systems Design</li>
-      <li>Optimization Algorithms</li>
-      <li>Simulation and Modeling</li>
-      <li>Performance Analysis Tools</li>
+      <li><strong>Distance calculation:</strong> Calculates Euclidean distance between elevator position and request floor in real time</li>
+      <li><strong>Decision algorithm:</strong> Uses greedy approach to minimize immediate travel distance for each request</li>
+      <li><strong>Sequential operation:</strong> Processes one request at a time to avoid complex coordination logic</li>
     </ul>
 
-    <!-- Results -->
-    <h2>Results</h2>
+    <h3>🔹 Optimized Multi-Elevator Controller (OMEC)</h3>
+    <ul>
+      <li><strong>Advanced grouping:</strong> Analyzes request patterns and clusters requests by floor proximity and direction</li>
+      <li><strong>Parallel operation:</strong> Maintains simultaneous multi-elevator coordination with worker pools and dynamic request filtering</li>
+      <li><strong>Performance:</strong> Achieved a 250% improvement in time efficiency and optimal wokload balance</li>
+    </ul>
+
+    <!-- Simulation Results -->
+    <h2>Simulation Results</h2>
     <p>
-      The optimized control system successfully reduced average passenger wait times by minimizing unnecessary 
-      elevator movements and implementing predictive dispatching. Energy efficiency was improved through 
-      strategic car allocation and idle state management. The simulation results validate the effectiveness 
-      of the proposed optimization approach for real-world elevator control applications.
+      The analysis in performance of the different elevator control strategies implemented was carried out in 
+      a 12-request simulation that was given at the same time to all the controllers. At the beginning of the simulation,
+      the elevator 1 is idle on the first floor and the elevator 2 is also idle on the top floor. The elevator speed is set 
+      to 2 seconds between floors and and the pause to pick up or drop off a client is 3 seconds long.
     </p>
 
     <!-- Results Table -->
@@ -214,7 +224,6 @@
     </div>
 
     <!-- Gallery -->
-    <h2>Simulation Results</h2>
     <div class="gallery">
       <figure>
         <img src="../assets/images/CCC_Elevator.png" alt="CCC Elevator Control">
@@ -229,6 +238,12 @@
         <figcaption>Optimized Elevator Control</figcaption>
       </figure>
     </div>
+
+    <p>
+      The results indicate that the Optimized Multi-Elevator Controller (OMEC) outperforms both the First Call Controller (FCC)
+      and the Closest Call Controller (CCC) in terms of average wait time and overall efficiency. The intelligent grouping 
+      and parallel operation strategies employed by OMEC significantly reduce service times and balance workloads between elevators.
+    </p>
 
     <!-- Code Button -->
     <a href="https://github.com/ortega-jor/Elevator_Control_System_Opitimization.git" target="_blank" class="btn">🔗 View Code on GitHub</a>
