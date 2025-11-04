@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elevator Control System Optimization - Jorge Ortega</title>
+  <title>Low-Cost Autonomous Robot - Jorge Ortega</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
@@ -111,12 +111,10 @@
 
     .container h3 {
       text-align: left;
-      text-align: justify;
     }
 
     .container ul {
       text-align: left;
-      text-align: justify;
     }
 
     footer {
@@ -162,92 +160,73 @@
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
   <header>
-    <h1>Elevator Control System Optimization</h1>
+    <h1>Development of a Low-Cost, Multifunctional Autonomous Robot</h1>
     <nav>
       <a href="../index.html">🏠 Home</a>
     </nav>
   </header>
 
   <div class="container">
-    <!-- Hero Image -->
+    <!-- Hero Image (placeholder - you can add your own image) -->
     <!-- <div class="project-hero">
-      <img src="../assets/images/elevator-system.png" alt="Elevator Control System">
+      <img src="../assets/images/autonomous-robot.png" alt="Autonomous Robot">
     </div> -->
 
-    <!-- Project Overview -->
-    <h2>Project Overview</h2>
+    <!-- Overview -->
+    <h2>Overview</h2>
     <p>
-      The main objective of this project is to design, implement, and compare multiple control strategies for the
-      operation and coordination of two elevators in a multi-floor building.
-      The elevator control algorithms aim to reduce total service time, minimize energy use, and ensure balanced 
-      request handling between elevators. The complete scope of the project was carried out using MATLAB.
+      This project focuses on the design and development of a low-cost, multifunctional autonomous mobile robot 
+      for indoor mapping and navigation. The goal was to create an accessible robotics platform that combines 
+      affordability with robust functionality, making advanced robotics technology more accessible for research 
+      and educational purposes. The robot integrates various sensors and actuators to achieve autonomous navigation, 
+      obstacle avoidance, and environmental mapping capabilities while maintaining cost-efficiency throughout the 
+      design and implementation process.
     </p>
 
-    <!-- Controllers Implemented -->
-    <h2>Controllers Implemented</h2>
-    <h3>🔹 First Call Controller (FCC)</h3>
+    <!-- Key Features -->
+    <h2>Key Features</h2>
     <ul>
-      <li><strong>Implementation details:</strong> Uses MATLAB's Parallel Computing Toolbox with <code>parfeval</code> for asynchronous task execution</li>
-      <li><strong>Queue Management:</strong> Maintains a FIFO (First-In-First-Out) queue structure for incoming requests</li>
-      <li><strong>Conflict resolution:</strong> Implements mutex locking and configurable parallel pools to prevent both elevators ro fulfull the same request</li>
+      <li>Cost-effective design using readily available components</li>
+      <li>Autonomous navigation and path planning algorithms</li>
+      <li>Real-time obstacle detection and avoidance</li>
+      <li>Indoor mapping and localization capabilities</li>
+      <li>Modular architecture for easy customization and upgrades</li>
+      <li>Integration of multiple sensor types (ultrasonic, infrared, IMU)</li>
     </ul>
 
-    <h3>🔹 Closest Call Controller (CCC)</h3>
+    <!-- Technologies -->
+    <h2>Technologies Used</h2>
     <ul>
-      <li><strong>Distance calculation:</strong> Calculates Euclidean distance between elevator position and request floor in real time</li>
-      <li><strong>Decision algorithm:</strong> Uses greedy approach to minimize immediate travel distance for each request</li>
-      <li><strong>Sequential operation:</strong> Processes one request at a time to avoid complex coordination logic</li>
+      <li>Embedded Systems (Microcontrollers)</li>
+      <li>Sensor Fusion and Integration</li>
+      <li>Motor Control Systems</li>
+      <li>Navigation Algorithms</li>
+      <li>PCB Design and Electronics</li>
+      <li>3D Modeling and Prototyping</li>
     </ul>
 
-    <h3>🔹 Optimized Multi-Elevator Controller (OMEC)</h3>
-    <ul>
-      <li><strong>Advanced grouping:</strong> Analyzes request patterns and clusters requests by floor proximity and direction</li>
-      <li><strong>Parallel operation:</strong> Maintains simultaneous multi-elevator coordination with worker pools and dynamic request filtering</li>
-      <li><strong>Performance:</strong> Achieved a 250% improvement in time efficiency and optimal wokload balance</li>
-    </ul>
-
-    <!-- Simulation Results -->
-    <h2>Simulation Results</h2>
+    <!-- Design Approach -->
+    <h2>Design Approach</h2>
     <p>
-      The analysis in performance of the different elevator control strategies implemented was carried out in 
-      a 12-request simulation that was given at the same time to all the controllers. At the beginning of the simulation,
-      the elevator 1 is idle on the first floor and the elevator 2 is also idle on the top floor. The elevator speed is set 
-      to 2 seconds between floors and and the pause to pick up or drop off a client is 3 seconds long.
+      The robot was designed with modularity and cost-effectiveness as primary considerations. Component selection 
+      prioritized widely available, affordable parts without compromising essential functionality. The mechanical 
+      structure was optimized for stability and ease of assembly, while the electronic architecture allows for 
+      future expansions and modifications. Software implementation focused on efficient algorithms that could run 
+      on resource-constrained hardware while maintaining real-time performance.
     </p>
 
-    <!-- Results Table -->
-    <div class="gallery">
-      <figure>
-        <img src="../assets/images/Table_elevator.png" alt="Performance Comparison Table">
-        <figcaption>Performance Comparison Table</figcaption>
-      </figure>
-    </div>
-
-    <!-- Gallery -->
-    <div class="gallery">
-      <figure>
-        <img src="../assets/images/CCC_Elevator.png" alt="CCC Elevator Control">
-        <figcaption>CCC Elevator Control</figcaption>
-      </figure>
-      <figure>
-        <img src="../assets/images/FCC_Elevator.png" alt="FCC Elevator Control">
-        <figcaption>FCC Elevator Control</figcaption>
-      </figure>
-      <figure>
-        <img src="../assets/images/Optimized_Elevator.png" alt="Optimized Elevator Control">
-        <figcaption>Optimized Elevator Control</figcaption>
-      </figure>
-    </div>
-
+    <!-- Results -->
+    <h2>Results</h2>
     <p>
-      The results indicate that the Optimized Multi-Elevator Controller (OMEC) outperforms both the First Call Controller (FCC)
-      and the Closest Call Controller (CCC) in terms of average wait time and overall efficiency. The intelligent grouping 
-      and parallel operation strategies employed by OMEC significantly reduce service times and balance workloads between elevators.
+      The completed autonomous robot successfully demonstrates indoor navigation and mapping capabilities at a 
+      fraction of the cost of commercial alternatives. The platform has proven suitable for educational purposes 
+      and research applications, validating the concept that advanced robotics functionality can be achieved 
+      through careful design optimization and component selection. The project establishes a foundation for 
+      future enhancements and serves as a reference design for low-cost autonomous systems.
     </p>
 
     <!-- Code Button -->
-    <a href="https://github.com/ortega-jor/Elevator_Control_System_Opitimization.git" target="_blank" class="btn">🔗 View Code on GitHub</a>
-    <a href="../assets/documents/Elevator_Control_Report.pdf" target="_blank" class="btn">📄 View Project Report</a>
+    <a href="https://github.com/ortega-jor/TFG_Autonomous_Mobile_Robot" target="_blank" class="btn">🔗 View Code on GitHub</a>
   </div>
 
   <!-- Lightbox -->
