@@ -48,7 +48,7 @@
 
     .project-hero img {
       width: 100%;
-      max-width: 700px;
+      max-width: 400px;
       border-radius: 12px;
       box-shadow: var(--shadow-1);
       margin: 20px 0;
@@ -92,11 +92,167 @@
       border-radius: 8px;
     }
 
+    .gallery video {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      background-color: #000;
+    }
+
+    .video-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .video-gallery figure {
+      margin: 0;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: var(--shadow-1);
+      border: 1px solid var(--card-border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .video-gallery figure:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+    }
+
+    .video-gallery video {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      background-color: #000;
+    }
+
     .gallery figcaption {
       text-align: center;
       margin-top: 10px;
       font-size: 0.9em;
       color: var(--muted);
+    }
+
+    /* Video modal styles */
+    #videoModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    #videoModal.active {
+      display: flex;
+    }
+
+    .video-modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .video-modal-media {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .video-modal-content video {
+      max-width: 100%;
+      max-height: 50vh;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      flex-shrink: 0;
+    }
+
+    .modal-image {
+      max-width: 100%;
+      max-height: 50vh;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      border: 2px solid var(--card-border);
+      flex-shrink: 0;
+      object-fit: contain;
+    }
+
+    @media (max-width: 1200px) {
+      .video-modal-media {
+        flex-direction: column;
+      }
+    }
+
+    .video-modal-content video {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .modal-image {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .video-modal-description {
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 800px;
+      color: var(--page-text);
+      box-shadow: var(--shadow-1);
+      flex-shrink: 0;
+    }
+
+    .video-modal-description h3 {
+      margin-top: 0;
+      color: var(--link);
+    }
+
+    .video-modal-description p {
+      text-align: justify;
+    }
+
+    .modal-image {
+      max-width: 100%;
+      width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      margin-top: 15px;
+      border: 2px solid var(--card-border);
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    @media (max-width: 768px) {
+      .video-gallery {
+        grid-template-columns: 1fr;
+      }
     }
 
     ul {
@@ -115,6 +271,126 @@
 
     .container ul {
       text-align: left;
+    }
+
+    /* Timeline styles */
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin: 40px 0;
+      padding: 60px 0 20px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--btn-bg), var(--link));
+      z-index: 0;
+    }
+
+    .timeline-item {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      min-width: 100px;
+      margin: 0 3px;
+      cursor: pointer;
+    }
+
+    .timeline-item a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      background-color: var(--btn-bg);
+      border: 3px solid var(--bg);
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-dot {
+      transform: translateX(-50%) scale(1.3);
+      box-shadow: 0 0 15px var(--btn-bg);
+    }
+
+    .timeline-label {
+      font-size: 0.75em;
+      font-weight: 600;
+      color: var(--page-text);
+      line-height: 1.2;
+      padding: 10px 2px 0;
+      min-height: 40px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .timeline-arrow {
+      position: absolute;
+      right: -15px;
+      top: -50px;
+      font-size: 1.2em;
+      color: var(--link);
+      z-index: 2;
+    }
+
+    .timeline-item:last-child .timeline-arrow {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .timeline {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .timeline::before {
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(180deg, var(--btn-bg), var(--link));
+      }
+
+      .timeline-item {
+        text-align: left;
+        padding-left: 40px;
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .timeline-dot {
+        position: absolute;
+        left: 0;
+        margin: 0;
+        top: 0;
+      }
+
+      .timeline-arrow {
+        display: none;
+      }
+
+      .timeline-label {
+        justify-content: flex-start;
+      }
     }
 
     footer {
@@ -167,63 +443,271 @@
   </header>
 
   <div class="container">
-    <!-- Hero Image (placeholder - you can add your own image) -->
-    <!-- <div class="project-hero">
-      <img src="../assets/images/autonomous-robot.png" alt="Autonomous Robot">
-    </div> -->
+    <!-- Hero Image -->
+    <div class="project-hero">
+      <img src="../assets/images/AMR2.jpg" alt="Autonomous Mobile Robot">
+    </div>
 
     <!-- Overview -->
     <h2>Overview</h2>
     <p>
       This project focuses on the design and development of a low-cost, multifunctional autonomous mobile robot 
-      for indoor mapping and navigation. The goal was to create an accessible robotics platform that combines 
+      for indoor navigation and mapping. The goal was to create an accessible robotics prototype that combines 
       affordability with robust functionality, making advanced robotics technology more accessible for research 
       and educational purposes. The robot integrates various sensors and actuators to achieve autonomous navigation, 
       obstacle avoidance, and environmental mapping capabilities while maintaining cost-efficiency throughout the 
       design and implementation process.
     </p>
 
-    <!-- Key Features -->
-    <h2>Key Features</h2>
-    <ul>
-      <li>Cost-effective design using readily available components</li>
-      <li>Autonomous navigation and path planning algorithms</li>
-      <li>Real-time obstacle detection and avoidance</li>
-      <li>Indoor mapping and localization capabilities</li>
-      <li>Modular architecture for easy customization and upgrades</li>
-      <li>Integration of multiple sensor types (ultrasonic, infrared, IMU)</li>
-    </ul>
+    <!-- Project Timeline -->
+    <h2>Development Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <a href="#state-of-art">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">Study of State of the Art</div>
+          <span class="timeline-arrow">→</span>
+        </a>
+      </div>
+      <div class="timeline-item">
+        <a href="#design-phase">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">Design Phase</div>
+          <span class="timeline-arrow">→</span>
+        </a>
+      </div>
+      <div class="timeline-item">
+        <a href="#component-selection">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">Component Selection</div>
+          <span class="timeline-arrow">→</span>
+        </a>
+      </div>
+      <div class="timeline-item">
+        <a href="#testing">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">Testing</div>
+          <span class="timeline-arrow">→</span>
+        </a>
+      </div>
+      <div class="timeline-item">
+        <a href="#assembly">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">Assembly</div>
+          <span class="timeline-arrow">→</span>
+        </a>
+      </div>
+      <div class="timeline-item">
+        <a href="#navigation-electrical">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">Algorithm & Electrical Design</div>
+          <span class="timeline-arrow">→</span>
+        </a>
+      </div>
+      <div class="timeline-item">
+        <a href="#final-result">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">Final Result</div>
+        </a>
+      </div>
+    </div>
 
-    <!-- Technologies -->
-    <h2>Technologies Used</h2>
-    <ul>
-      <li>Embedded Systems (Microcontrollers)</li>
-      <li>Sensor Fusion and Integration</li>
-      <li>Motor Control Systems</li>
-      <li>Navigation Algorithms</li>
-      <li>PCB Design and Electronics</li>
-      <li>3D Modeling and Prototyping</li>
-    </ul>
-
-    <!-- Design Approach -->
-    <h2>Design Approach</h2>
+    <!-- Study of State of the Art -->
+    <h2 id="state-of-art">Study of State of the Art</h2>
     <p>
-      The robot was designed with modularity and cost-effectiveness as primary considerations. Component selection 
-      prioritized widely available, affordable parts without compromising essential functionality. The mechanical 
-      structure was optimized for stability and ease of assembly, while the electronic architecture allows for 
-      future expansions and modifications. Software implementation focused on efficient algorithms that could run 
-      on resource-constrained hardware while maintaining real-time performance.
+      The initial phase involved a deep study of autonomous mobile robots, tracing their evolution from 
+      their origins to the most advanced AMRs available nowadays. This comprehensive research analyzed 
+      the technological progression, from early pioneering systems to modern commercial solutions, to 
+      understand current capabilities, limitations, and opportunities for innovation in low-cost robotics 
+      platforms.
     </p>
+    <div class="gallery">
+      <figure>
+        <img src="../assets/images/stanford_cart.jpg" alt="Stanford Cart 1975" loading="lazy">
+        <figcaption>Stanford Cart (1975) - Early autonomous navigation pioneer</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/summit_robotnik.jpg" alt="Summit XL Steel Robot by Robotnik" loading="lazy">
+        <figcaption>Summit XL Steel by Robotnik - Modern state-of-the-art AMR</figcaption>
+      </figure>
+    </div>
 
-    <!-- Results -->
-    <h2>Results</h2>
+    <!-- Design Phase -->
+    <h2 id="design-phase">Design Phase</h2>
     <p>
-      The completed autonomous robot successfully demonstrates indoor navigation and mapping capabilities at a 
-      fraction of the cost of commercial alternatives. The platform has proven suitable for educational purposes 
-      and research applications, validating the concept that advanced robotics functionality can be achieved 
-      through careful design optimization and component selection. The project establishes a foundation for 
-      future enhancements and serves as a reference design for low-cost autonomous systems.
+      Based on the research findings, the robot architecture was conceptualized with modularity and 
+      cost-effectiveness as primary objectives. Multiple sketches were drawn to explore different 
+      mechanical structures, evaluating various configurations for optimal stability, accessibility, 
+      and component integration.
     </p>
+    <div class="gallery">
+      <figure>
+        <img src="../assets/images/chasis_sketches.jpg" alt="Chassis Design Sketches" loading="lazy">
+        <figcaption>Initial chassis design sketches exploring different configurations</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/robot_setup_drawing.jpg" alt="Robot Setup Drawing" loading="lazy">
+        <figcaption>Complete robot setup and component arrangement drawing</figcaption>
+      </figure>
+    </div>
+
+    <!-- Component Selection -->
+    <h2 id="component-selection">Component Selection</h2>
+    <p>
+      Components were carefully selected prioritizing low budget without compromising functionality. 
+      For localization tasks, the RPLidar A1M8 and GPS NEO-M8N modules were chosen for their accuracy 
+      and affordability. NEMA17 DC stepper motors were selected for their high torque and precision, 
+      controlled by A4988 drivers for reliable performance. The chassis structure utilized aluminum 
+      tubes for lightweight durability. ESP32 microcontrollers were selected for their exceptional 
+      price-to-performance ratio and integrated low-energy Bluetooth and WiFi modules, enabling seamless 
+      inter-device communication while maintaining cost-effectiveness. The overall cost of all components 
+      was approximately $300, demonstrating the project's success in achieving sufficient 
+      functionality at a fraction of commercial robot costs.
+    </p>
+    <div class="gallery">
+      <figure>
+        <img src="../assets/images/esp32_microcontroller.jpg" alt="ESP32 Microcontroller" loading="lazy">
+        <figcaption>ESP32 Microcontroller - Low-cost, high-performance control unit</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/rplidar_a1m8.jpg" alt="RPLidar A1M8" loading="lazy">
+        <figcaption>RPLidar A1M8 - Affordable 360° laser range scanner</figcaption>
+      </figure>
+    </div>
+
+    <!-- Testing -->
+    <h2 id="testing">Testing</h2>
+    <p>
+      Individual components and subsystems underwent multiple tests to validate functionality and 
+      performance. Sensor accuracy, motor control responsiveness, and communication protocols were 
+      verified before integration to ensure reliable operation in the final assembly.
+    </p>
+    <div class="video-gallery">
+      <figure data-video="../assets/videos/nema17_test.mp4" data-title="NEMA17 Motor Test" data-description="Test of the NEMA17 stepper motors for precise movement control and torque verification. The motors were being teleoperated via Bluetooth. In this video you can see that there were troubles with the motor performance. Given the same command, each motor was moving at a different speed. The A4988 drivers had to be calibrated multiple times until closer performance was achieved, ensuring consistent motor synchronization for reliable robot movement.">
+        <video autoplay loop muted playsinline>
+          <source src="../assets/videos/nema17_test.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>NEMA17 Motor Test</figcaption>
+      </figure>
+      <figure data-video="../assets/videos/Lidar_Test.mp4" data-title="LiDAR Sensor Test" data-description="Validating the RPLidar A1M8 scanning accuracy and range detection capabilities. The sensor successfully detected obstacles at various distances and angles. However, data filtering algorithms were implemented to eliminate erroneous readings and prioritize measurement points with higher quality values, thereby ensuring more reliable obstacle detection for autonomous navigation purposes." data-image="../assets/images/LidarOutput.jpg">
+        <video autoplay loop muted playsinline>
+          <source src="../assets/videos/Lidar_Test.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>LiDAR Sensor Test</figcaption>
+      </figure>
+      <figure data-video="../assets/videos/Lidar_Mapping.mp4" data-title="LiDAR Mapping Test" data-description="Real-time environment mapping demonstration using the LiDAR sensor. The system successfully generated a point cloud that represented a 2D map of the surrounding environment for navigation purposes.">
+        <video autoplay loop muted playsinline>
+          <source src="../assets/videos/Lidar_Mapping.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>LiDAR Mapping Test</figcaption>
+      </figure>
+      <figure data-video="../assets/videos/GPS_Test.mp4" data-title="GPS Module Test" data-description="Validation of the NEO-M8N GPS module for outdoor localization accuracy. The module provided reliable position data with acceptable accuracy for autonomous navigation tasks in outdoor environments. Additional testing was conducted in indoor environments to assess accuracy under constrained conditions; however, the acquisition of satellite signals required significantly extended periods, thereby demonstrating that this sensor is predominantly suitable for outdoor applications.">
+        <video autoplay loop muted playsinline>
+          <source src="../assets/videos/GPS_Test.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>GPS Module Test</figcaption>
+      </figure>
+    </div>
+
+    <!-- Assembly -->
+    <h2 id="assembly">Assembly</h2>
+    <p>
+      The mechanical structure was assembled and all electronic components were integrated following 
+      a clean setup that would facilitate wiring and ensure maximum robustness once fully assembled. 
+      Wiring, PCB mounting, and sensor positioning were completed with attention to accessibility 
+      for future modifications and maintenance. A custom mount for the motors was designed in 
+      SolidWorks and 3D printed to ensure precise fitment and secure integration with the aluminum 
+      chassis structure.
+    </p>
+    <div class="gallery" style="grid-template-columns: repeat(3, 1fr);">
+      <figure>
+        <img src="../assets/images/aluminum_chassis.jpg" alt="Aluminum Chassis Structure" loading="lazy">
+        <figcaption>Aluminum tube chassis structure</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/chassis_top_view.jpg" alt="Robot Chassis - Top View" loading="lazy">
+        <figcaption>Top view of the assembled robot chassis</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/chassis_bottom_view.jpg" alt="Robot Chassis - Bottom View" loading="lazy">
+        <figcaption>Bottom view showing motor mounting</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/motor_mount_design.jpg" alt="Motor Mount Design" loading="lazy">
+        <figcaption>SolidWorks design of custom 3D printed motor mount</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/motor_drivers_wiring.jpg" alt="Motor Drivers Wiring" loading="lazy">
+        <figcaption>A4988 motor driver wiring configuration</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/AMR.jpg" alt="Complete Robot Assembly" loading="lazy">
+        <figcaption>Complete robot assembly with all components integrated</figcaption>
+      </figure>
+    </div>
+
+    <!-- Navigation Algorithm & Electrical Design -->
+    <h2 id="navigation-electrical">Localization Algorithm Design & Electrical Schematic</h2>
+    <p>
+      The localization algorithm was designed to enable autonomous movement and obstacle avoidance through 
+      sensor fusion and intelligent path planning algorithms. The data acquired from the LiDAR sensor undergoes 
+      filtering and is organized into angular-segmented data packages based on the collection angle. Upon 
+      completion of each package, the average distance of all measurement points is computed and transmitted 
+      to the second ESP32 microcontroller. This microcontroller utilizes the processed distance values to 
+      execute directional adjustments when proximity to obstacles at the front of the robot falls below the 
+      established threshold.
+    </p>
+    <p>
+      The electrical schematic was carefully designed in Autodesk Eagle to ensure 
+      reliable power distribution and proper signal routing. This phase integrated the software architecture 
+      with the hardware implementation to achieve seamless autonomous operation.
+    </p>
+    <div class="gallery">
+      <figure>
+        <img src="../assets/images/Localization_Algorithm.jpg" alt="Localization Algorithm Design" loading="lazy">
+        <figcaption>Localization algorithm sketch</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/electrical_schematic.png" alt="Electrical Schematic" loading="lazy">
+        <figcaption>Complete electrical schematic diagram of the robot system</figcaption>
+      </figure>
+    </div>
+
+    <!-- Final Result -->
+    <h2 id="final-result">Final Result</h2>
+    <p>
+      The completed low cost autonomous robot successfully demonstrates sufficient indoor navigation, obstacle detection and mapping capabilities 
+      at a fraction of the cost of commercial alternatives. The platform has proven to be suitable for 
+      educational purposes and potentially, research applications, validating the concept that advanced robotics 
+      functionality can be achieved through careful design optimization and component selection.
+    </p>
+    <div class="video-gallery" style="grid-template-columns: repeat(3, 1fr);">
+      <figure data-video="../assets/videos/AMR_Test1.mp4" data-title="Motor Test of full assembly" data-description="Demonstration of the performance of the motors in the full assembly.">
+        <video autoplay loop muted playsinline>
+          <source src="../assets/videos/AMR_Test1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>Final Demo 1</figcaption>
+      </figure>
+      <figure data-video="../assets/videos/AMR_Test2.mp4" data-title="Final Demo 2" data-description="Demonstration of the Lidar data acquisition during the autonomous navigation. The distances measured are collected, processed, and sent to the second microcontroller in real time.">
+        <video autoplay loop muted playsinline>
+          <source src="../assets/videos/AMR_Test2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>Final Demo 2</figcaption>
+      </figure>
+      <figure data-video="../assets/videos/AMR_Test3.mp4" data-title="Final Demo 3" data-description="Demonstration of the completed autonomous robot in operation. The system exhibits autonomous navigation capabilities with real-time obstacle detection and avoidance. Upon detecting obstacles below the established proximity threshold, the robot executes a decision-making process wherein the navigation algorithm selects the angular-segmented data package with the greatest average distance measurement. Subsequently, directional adjustment commands are transmitted to the motor control system, executing rotational maneuvers until the AMR achieves the optimal heading orientation.">
+        <video autoplay loop muted playsinline>
+          <source src="../assets/videos/AMR_Test3.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>Final Demo 3</figcaption>
+      </figure>
+    </div>
 
     <!-- Code Button -->
     <a href="https://github.com/ortega-jor/TFG_Autonomous_Mobile_Robot" target="_blank" class="btn">🔗 View Code on GitHub</a>
@@ -232,6 +716,24 @@
   <!-- Lightbox -->
   <div id="lightbox">
     <img src="" alt="">
+  </div>
+
+  <!-- Video Modal -->
+  <div id="videoModal">
+    <span class="video-modal-close" onclick="closeVideoModal()">&times;</span>
+    <div class="video-modal-content">
+      <div class="video-modal-media">
+        <video id="modalVideo" controls autoplay loop>
+          <source src="" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <img id="modalImage" class="modal-image" style="display: none;" src="" alt="Additional information">
+      </div>
+      <div class="video-modal-description">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
   </div>
 
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">🌗</button>
@@ -306,6 +808,48 @@
 
     lightbox.addEventListener("click", () => {
       lightbox.style.display = "none";
+    });
+
+    // Video modal functionality
+    const videoModal = document.getElementById("videoModal");
+    const modalVideo = document.getElementById("modalVideo");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalImage = document.getElementById("modalImage");
+
+    document.querySelectorAll(".video-gallery figure").forEach(figure => {
+      figure.addEventListener("click", () => {
+        const videoSrc = figure.getAttribute("data-video");
+        const title = figure.getAttribute("data-title");
+        const description = figure.getAttribute("data-description");
+        const imageSrc = figure.getAttribute("data-image");
+        
+        modalVideo.querySelector("source").src = videoSrc;
+        modalVideo.load();
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+        
+        // Show or hide image based on data-image attribute
+        if (imageSrc) {
+          modalImage.src = imageSrc;
+          modalImage.style.display = "block";
+        } else {
+          modalImage.style.display = "none";
+        }
+        
+        videoModal.classList.add("active");
+      });
+    });
+
+    function closeVideoModal() {
+      videoModal.classList.remove("active");
+      modalVideo.pause();
+    }
+
+    videoModal.addEventListener("click", (e) => {
+      if (e.target === videoModal) {
+        closeVideoModal();
+      }
     });
   </script>
 </body>
