@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Robot Coordination - Jorge Ortega</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* Project-specific styles that extend the main theme */
+    header {
+      background: linear-gradient(135deg, var(--btn-bg), var(--link));
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      transform: scale(1.1);
+      opacity: 0.9;
+    }
+
+    .project-hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .project-hero img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-1);
+      margin: 20px 0;
+      display: block;
+      border: 2px solid var(--card-border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-hero img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .gallery figure {
+      margin: 0;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: var(--shadow-1);
+      border: 1px solid var(--card-border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery figure:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .gallery figcaption {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: var(--muted);
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      line-height: 1.8;
+    }
+
+    .container p {
+      text-align: justify;
+    }
+
+    .container h3 {
+      text-align: left;
+    }
+
+    .container ul {
+      text-align: left;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 0.9em;
+      background-color: var(--card-bg);
+      color: var(--muted);
+      border-top: 1px solid var(--card-border);
+    }
+
+    /* Lightbox styles */
+    #lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      nav a,
+      .project-hero img,
+      .gallery figure {
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <header>
+    <h1>Synchronization & Coordination of Mobile Robots</h1>
+    <nav>
+      <a href="../index.html">🏠 Home</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Hero Image -->
+    <div class="project-hero">
+      <img src="../assets/images/multi_robot_system.jpg" alt="Multi-Robot Coordination System">
+    </div>
+
+    <!-- Overview -->
+    <h2>Overview</h2>
+    <p>
+      This project focuses on the development and simulation of a multi-agent robot system designed 
+      for autonomous exploration and coordination within a shared environment. The system utilizes 
+      the open-source TurtleBot 3 robot platform and ROS (Robot Operating System) packages to 
+      implement coordinated navigation, obstacle avoidance, and task allocation strategies. The 
+      project demonstrates effective communication protocols and synchronization mechanisms that 
+      enable multiple robots to work collaboratively while avoiding conflicts and optimizing 
+      collective performance.
+    </p>
+
+    <!-- Objectives -->
+    <h2>Project Objectives</h2>
+    <ul>
+      <li>Develop a multi-agent coordination framework for autonomous mobile robots</li>
+      <li>Implement communication protocols for inter-robot information sharing</li>
+      <li>Design collision avoidance strategies for shared workspace navigation</li>
+      <li>Create task allocation algorithms for efficient exploration coverage</li>
+      <li>Simulate and validate system performance in various scenarios</li>
+      <li>Optimize synchronization mechanisms for real-time operation</li>
+    </ul>
+
+    <!-- System Architecture -->
+    <h2>System Architecture</h2>
+    <p>
+      The multi-robot system architecture is built upon ROS framework, leveraging its distributed 
+      communication capabilities. Each robot operates as an autonomous agent with its own perception, 
+      planning, and control modules while maintaining connectivity with other agents through a 
+      centralized or distributed coordination layer. The system employs publish-subscribe messaging 
+      patterns for state information exchange and service-based communication for task negotiation 
+      and coordination commands.
+    </p>
+
+    <!-- Key Features -->
+    <h2>Key Features</h2>
+    <ul>
+      <li>Multi-agent coordination using ROS framework</li>
+      <li>Decentralized decision-making with centralized oversight</li>
+      <li>Real-time collision avoidance and path planning</li>
+      <li>Dynamic task allocation and workload balancing</li>
+      <li>Fault tolerance and robot failure recovery</li>
+      <li>Scalable architecture supporting variable team sizes</li>
+    </ul>
+
+    <!-- Technologies -->
+    <h2>Technologies Used</h2>
+    <ul>
+      <li>ROS (Robot Operating System)</li>
+      <li>TurtleBot 3 platform and simulation packages</li>
+      <li>Gazebo simulator for environment modeling</li>
+      <li>Python for coordination algorithms</li>
+      <li>RViz for visualization and monitoring</li>
+      <li>Navigation stack for autonomous movement</li>
+    </ul>
+
+    <!-- Implementation Details -->
+    <h2>Implementation Details</h2>
+    <p>
+      The coordination system implements a hierarchical control architecture where each robot maintains 
+      local autonomy while participating in global coordination. The task allocation algorithm employs 
+      auction-based methods to distribute exploration goals efficiently among available robots. 
+      Collision avoidance is achieved through a combination of local reactive behaviors and global 
+      path planning with trajectory prediction. The communication layer ensures reliable message 
+      delivery while minimizing network overhead through selective information sharing and 
+      event-triggered updates.
+    </p>
+
+    <!-- Results -->
+    <h2>Results</h2>
+    <p>
+      Simulation results demonstrate successful coordination of multiple TurtleBot 3 robots in 
+      various exploration scenarios. The system achieved efficient area coverage with minimal 
+      redundancy and successfully avoided inter-robot collisions in densely populated workspaces. 
+      Task completion times showed significant improvement compared to sequential single-robot 
+      approaches, validating the benefits of multi-agent coordination. The implemented algorithms 
+      proved robust to individual robot failures and communication delays, maintaining system 
+      functionality under degraded conditions.
+    </p>
+
+    <!-- Future Work -->
+    <h2>Future Work</h2>
+    <ul>
+      <li>Implementation on physical TurtleBot 3 hardware</li>
+      <li>Integration of advanced learning algorithms for adaptive coordination</li>
+      <li>Extension to heterogeneous robot teams with different capabilities</li>
+      <li>Development of more sophisticated task allocation strategies</li>
+      <li>Enhancement of communication protocols for bandwidth-limited environments</li>
+    </ul>
+
+    <!-- Code Button -->
+    <a href="https://github.com/ortega-jor/conveyor-system" target="_blank" class="btn">🔗 View Code on GitHub</a>
+    <a href="../assets/documents/Robot_Coordination_Report.pdf" target="_blank" class="btn">📄 View Project Report</a>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <img src="" alt="">
+  </div>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">🌗</button>
+
+  <footer>
+    <p>© 2025 Jorge Ortega — Robotics Portfolio</p>
+  </footer>
+
+  <!-- Script should be at the end of body -->
+  <script>
+    // Theme toggle: respects stored preference, otherwise system preference
+    (function() {
+      const root = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+      const storageKey = 'jorge_theme_pref';
+
+      function applyTheme(theme) {
+        if (theme === 'light') {
+          root.classList.add('light-theme');
+          toggle.textContent = '🌞';
+        } else {
+          root.classList.remove('light-theme');
+          toggle.textContent = '🌙';
+        }
+      }
+
+      function getPreferredTheme() {
+        const stored = localStorage.getItem(storageKey);
+        if (stored === 'light' || stored === 'dark') return stored;
+        const mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        return mq ? 'light' : 'dark';
+      }
+
+      // Initialize
+      applyTheme(getPreferredTheme());
+
+      // Toggle handler
+      toggle.addEventListener('click', function() {
+        const isLight = root.classList.contains('light-theme');
+        const newTheme = isLight ? 'dark' : 'light';
+        applyTheme(newTheme);
+        try { localStorage.setItem(storageKey, newTheme); } catch (e) { /* ignore */ }
+      });
+    })();
+
+    // Scroll progress bar
+    (function() {
+      const progressBar = document.getElementById('scrollProgress');
+      
+      function updateScrollProgress() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        progressBar.style.width = scrollPercentage + '%';
+      }
+      
+      window.addEventListener('scroll', updateScrollProgress);
+      window.addEventListener('resize', updateScrollProgress);
+      updateScrollProgress(); // Initialize on load
+    })();
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+
+    document.querySelectorAll(".gallery img").forEach(img => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+      });
+    });
+
+    lightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+  </script>
+</body>
+</html>
