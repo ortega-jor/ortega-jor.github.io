@@ -1,127 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <title>Jorge Ortega</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css?v=1.1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jorge Ortega | Robotics Engineer</title>
+<meta name="description" content="Portfolio of Jorge Ortega, robotics engineer. Projects in autonomous mobile robots, ROS, control systems and embedded design. MS Robotics, Northeastern University." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-    <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="container fade-in delay-1">
-        <img src="profile.jpg" alt="Profile Picture" class="profile fade-in delay-1">
-        <h1 class="fade-in delay-1">Jorge Ortega</h1>
-        <p class="subtitle fade-in delay-1"><strong>Industrial Electronic & Automation Engineer</strong></p>
 
-        <h2 class="fade-in delay-1">About Me</h2>
-        <div class="about fade-in delay-1">
-            <p>I graduated in 2024 with a Bachelor of Science in Industrial Electronics and Automation Engineering from the University of León, Spain. I am currently pursuing a Master of Science in Robotics at Northeastern University, where I am further developing my expertise in robotics and autonomous systems.</p>
-            <p>I am passionate about the design and development of robotic solutions, with a strong interest in the automotive industry and autonomous technologies. Outside of engineering, I am an avid sports enthusiast who values teamwork, discipline, and continuous self-improvement, qualities that I bring to both my personal and professional endeavors.</p>
-        </div>
-
-        <a href="assets/documents/JorgeOrtega_Resume.pdf" class="btn fade-in delay-2" download>📄 Download My Resume</a>
-
-        <h2 class="fade-in delay-2">Projects</h2>
-        <div class="projects fade-in delay-2">
-            <div class="card fade-in delay-2">
-                <a href="projects/autonomous-robot.html">
-                    <img src="assets/images/AMR.jpg" alt="Autonomous Mobile Robot" class="project-thumbnail">
-                </a>
-                <h3>Development of a Low-Cost, Multifunctional Autonomous Robot</h3>
-                <p>Designed and built an autonomous mobile robot for indoor mapping with a focus on cost-efficiency.</p>
-                <a href="projects/autonomous-robot.html">View Project →</a>
-            </div>
-            <div class="card fade-in delay-2">
-                <a href="projects/biped-rl.html">
-                    <img src="assets/images/harpy_config.png" alt="Biped Robot RL Project" class="project-thumbnail">
-                </a>
-                <h3>Stable Walking on Biped Robot using RL</h3>
-                <p>Trained a customized biped robot in the MuJoCo Walker2D-v5 environment using PPO based on Stable Baselines3, achieving stable forward locomotion.</p>
-                <a href="projects/biped-rl.html">View Project →</a>
-            </div>
-            <div class="card fade-in delay-2">
-                <a href="projects/elevator-control.html">
-                    <img src="assets/images/elevator_system.png" alt="Elevator Control System Optimization" class="project-thumbnail">
-                </a>
-                <h3>Elevator Control System Optimization</h3>
-                <p>Designed and simulated an optimized multi-elevator system using MATLAB to improve travel time and energy efficiency.</p>
-                <a href="projects/elevator-control.html">View Project →</a>
-                    
-            </div>
-            <div class="card fade-in delay-2">
-                <a href="projects/multi-robot-coordination.html">
-                    <img src="assets/images/multi_robot_system2.png" alt="Multi-Robot Coordination" class="project-thumbnail">
-                </a>
-                <h3>Synchronization & Coordination of Mobile Robots</h3>
-                <p>Simulated a multi agent robot system for autonomous exploration within a shared environment based on the 
-                    open-source TurtleBot 3 robot ROS packages.</p>
-                <a href="projects/multi-robot-coordination.html">View Project →</a>
-            </div>
-        </div>
-
-        <h2 class="fade-in delay-3">Contact</h2>
-        <div class="contact fade-in delay-3">
-            <p>📧 Email: <a href="mailto:ortega.jor@northeastern.edu">ortega.jor@northeastern.edu</a></p>
-            <p>💼 LinkedIn: <a href="www.linkedin.com/in/jorge-ortega-camazon">Jorge Ortega</a></p>
-            <p>📂 GitHub: <a href="https://github.com/ortega-jor">ortega-jor</a></p>
-        </div>
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand">Jorge Ortega</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">🌗</button>
+    <button class="tt" id="themeToggle" aria-label="Toggle light and dark theme">&#9680;</button>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Robotics Engineer</div>
+      <h1>Jorge Ortega</h1>
+      <p class="lede">MS Robotics student at Northeastern University, with a background in industrial electronics and automation engineering.</p>
+      <p>This site collects the projects I have worked on during my degrees and my co-op: mobile robots, ROS-based navigation, control systems and embedded hardware.</p>
+      <div class="cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="assets/documents/Resume_JorgeOrtega_Universal.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Resume &#8599;</a>
+        <a href="https://www.linkedin.com/in/jorge-ortega-camazon" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn &#8599;</a>
+      </div>
+    </div>
+    <div class="portrait"><img src="profile.jpg" alt="Jorge Ortega"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-head"><span class="sec-num">01</span><h2>About</h2><span class="rule"></span></div>
+    <div class="about-grid">
+      <div>
+        <p>I graduated in 2024 with a Bachelor of Science in Industrial Electronics and Automation Engineering from the University of León, Spain. I am currently pursuing a Master of Science in Robotics at Northeastern University, where I am further developing my expertise in robotics and autonomous systems.</p>
+      </div>
+      <div>
+        <p>I am passionate about the design and development of robotic solutions, with a strong interest in the automotive industry and autonomous technologies. Outside of engineering, I am an avid sports enthusiast who values teamwork, discipline, and continuous self-improvement, qualities that I bring to both my personal and professional endeavors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Projects</h2><span class="rule"></span></div>
+    <div class="projects">
+      <article class="pcard">
+        <a class="pthumb" href="projects/titan-ultrasound.html"><img src="assets/images/titan/titan-card.jpg" alt="Titan Advanced Energy Solutions" loading="lazy"></a>
+        <div class="pbody">
+          <div class="pcat">Engineering Co-op · 8 months</div>
+          <h3><a href="projects/titan-ultrasound.html">Non-Destructive Inspection for Battery Cell Manufacturing</a></h3>
+          <p>Worked on ultrasound systems used to non-destructively inspect cylindrical and prismatic battery cells, building Python tooling for transducer characterization, sensor array placement and calibration monitoring.</p>
+          <div class="ptags"><span class="ptag">Python</span><span class="ptag">Signal processing</span><span class="ptag">Ultrasound</span><span class="ptag">Optimization</span></div>
+          <a class="plink" href="projects/titan-ultrasound.html">View project <span>&#8594;</span></a>
+        </div>
+      </article>
+      <article class="pcard">
+        <a class="pthumb" href="projects/autonomous-robot.html"><img src="assets/images/thumbs/AMR.jpg" alt="Autonomous mobile robot prototype" loading="lazy"></a>
+        <div class="pbody">
+          <div class="pcat">Final Degree Project</div>
+          <h3><a href="projects/autonomous-robot.html">Low-Cost Multifunctional Autonomous Robot</a></h3>
+          <p>Designed and built an autonomous mobile robot for indoor mapping, with a focus on cost-efficiency. Covers the chassis design, component selection, electrical schematic and navigation algorithm.</p>
+          <div class="ptags"><span class="ptag">ESP32</span><span class="ptag">RPLidar</span><span class="ptag">SolidWorks</span><span class="ptag">Eagle</span></div>
+          <a class="plink" href="projects/autonomous-robot.html">View project <span>&#8594;</span></a>
+        </div>
+      </article>
+      <article class="pcard">
+        <a class="pthumb" href="projects/biped-rl.html"><img src="assets/images/thumbs/harpy_config.jpg" alt="Biped robot walking in MuJoCo" loading="lazy"></a>
+        <div class="pbody">
+          <div class="pcat">Reinforcement Learning</div>
+          <h3><a href="projects/biped-rl.html">Stable Walking on a Biped Robot using RL</a></h3>
+          <p>Trained a customized biped robot in the MuJoCo Walker2D-v5 environment using PPO based on Stable Baselines3, achieving stable forward locomotion.</p>
+          <div class="ptags"><span class="ptag">PyTorch</span><span class="ptag">MuJoCo</span><span class="ptag">PPO</span><span class="ptag">Gymnasium</span></div>
+          <a class="plink" href="projects/biped-rl.html">View project <span>&#8594;</span></a>
+        </div>
+      </article>
+      <!-- Hidden for now, needs more work. The page still exists at
+           projects/multi-robot-coordination.html; restore this card to bring it back.
+      <article class="pcard">
+        <a class="pthumb" href="projects/multi-robot-coordination.html"><img src="assets/images/thumbs/multi_robot_system2.jpg" alt="Multi-robot coordination" loading="lazy"></a>
+        <div class="pbody">
+          <div class="pcat">ROS · Multi-Agent</div>
+          <h3><a href="projects/multi-robot-coordination.html">Synchronization &amp; Coordination of Mobile Robots</a></h3>
+          <p>Simulated a multi-agent robot system for autonomous exploration within a shared environment, based on the open-source TurtleBot 3 ROS packages.</p>
+          <div class="ptags"><span class="ptag">ROS Noetic</span><span class="ptag">Gazebo</span><span class="ptag">gmapping</span><span class="ptag">Python</span></div>
+          <a class="plink" href="projects/multi-robot-coordination.html">View project <span>&#8594;</span></a>
+        </div>
+      </article>
+      -->
+      <article class="pcard">
+        <a class="pthumb" href="projects/elevator-control.html"><img src="assets/images/thumbs/elevator_system.jpg" alt="Elevator control system" loading="lazy"></a>
+        <div class="pbody">
+          <div class="pcat">Control · MATLAB</div>
+          <h3><a href="projects/elevator-control.html">Elevator Control System Optimization</a></h3>
+          <p>Designed and simulated an optimized multi-elevator system in MATLAB, comparing three dispatch strategies to improve travel time and energy efficiency.</p>
+          <div class="ptags"><span class="ptag">MATLAB</span><span class="ptag">Parallel Computing</span><span class="ptag">Scheduling</span></div>
+          <a class="plink" href="projects/elevator-control.html">View project <span>&#8594;</span></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Contact</h2><span class="rule"></span></div>
+    <div class="contact-box">
+      <p>The best way to reach me is by email.</p>
+      <div class="cta" style="margin:0">
+        <a href="mailto:ortega.jor@northeastern.edu" class="btn btn-primary">&#9993; ortega.jor@northeastern.edu</a>
+        <a href="https://www.linkedin.com/in/jorge-ortega-camazon" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn &#8599;</a>
+        <a href="https://github.com/ortega-jor" target="_blank" rel="noopener" class="btn btn-ghost">GitHub &#8599;</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Jorge Ortega</span>
+    <span>Built with HTML &amp; CSS · Hosted on GitHub Pages</span>
+  </footer>
+</div>
+
+<script src="assets/js/site.js"></script>
 </body>
-    <script>
-        // Theme toggle: respects stored preference, otherwise system preference
-        (function() {
-            const root = document.documentElement;
-            const toggle = document.getElementById('themeToggle');
-            const storageKey = 'jorge_theme_pref';
-
-            function applyTheme(theme) {
-                if (theme === 'light') {
-                    root.classList.add('light-theme');
-                    toggle.textContent = '🌞';
-                } else {
-                    root.classList.remove('light-theme');
-                    toggle.textContent = '🌙';
-                }
-            }
-
-            function getPreferredTheme() {
-                const stored = localStorage.getItem(storageKey);
-                if (stored === 'light' || stored === 'dark') return stored;
-                const mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                return mq ? 'light' : 'dark';
-            }
-
-            // Initialize
-            applyTheme(getPreferredTheme());
-
-            // Toggle handler
-            toggle.addEventListener('click', function() {
-                const isLight = root.classList.contains('light-theme');
-                const newTheme = isLight ? 'dark' : 'light';
-                applyTheme(newTheme);
-                try { localStorage.setItem(storageKey, newTheme); } catch (e) { /* ignore */ }
-            });
-        })();
-
-        // Scroll progress bar
-        (function() {
-            const progressBar = document.getElementById('scrollProgress');
-            
-            function updateScrollProgress() {
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrollPercentage = (scrollTop / scrollHeight) * 100;
-                progressBar.style.width = scrollPercentage + '%';
-            }
-            
-            window.addEventListener('scroll', updateScrollProgress);
-            window.addEventListener('resize', updateScrollProgress);
-            updateScrollProgress(); // Initialize on load
-        })();
-    </script>
 </html>

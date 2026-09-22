@@ -1,0 +1,236 @@
+/* ==========================================================================
+   Jorge Ortega portfolio - shared stylesheet
+   Used by index.html and every page under /projects/.
+   ========================================================================== */
+
+/* ---------- Design tokens ---------- */
+:root{
+  --bg:#0b1118; --bg-elev:#111a24; --surface:#131e2a; --border:rgba(255,255,255,.08);
+  --text:#e8eef5; --muted:#8fa3b8; --accent:#4d8dff; --accent-2:#35d6c3;
+  --accent-soft:rgba(77,141,255,.12);
+  --radius:14px; --maxw:1080px;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 28px rgba(0,0,0,.28);
+}
+.light-theme{
+  --bg:#f7f9fc; --bg-elev:#ffffff; --surface:#ffffff; --border:rgba(15,30,50,.10);
+  --text:#16202c; --muted:#5a6b7d; --accent:#1f62d6; --accent-2:#0e9c8c;
+  --accent-soft:rgba(31,98,214,.08);
+  --shadow:0 1px 2px rgba(15,30,50,.05),0 8px 24px rgba(15,30,50,.07);
+}
+
+/* ---------- Base ---------- */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Space Grotesk','Inter',system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}
+img,video{max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:28px}
+.brand{font-weight:700;font-size:1.02rem;color:var(--text);letter-spacing:-.01em;
+  font-family:'Space Grotesk',sans-serif}
+.nav-links{margin-left:auto;display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--muted);font-size:.92rem;font-weight:500;transition:color .18s}
+.nav-links a:hover{color:var(--text)}
+.tt{background:none;border:1px solid var(--border);color:var(--muted);width:34px;height:34px;
+  border-radius:9px;cursor:pointer;font-size:.9rem;line-height:1;transition:.18s}
+.tt:hover{color:var(--text);border-color:var(--accent)}
+
+/* ---------- Buttons ---------- */
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:10px;
+  font-size:.93rem;font-weight:600;border:1px solid transparent;transition:.18s;cursor:pointer}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- Section headings ---------- */
+section{padding:66px 0 0}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:28px}
+.sec-num{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;
+  color:var(--accent);letter-spacing:.06em}
+.sec-head h2{font-size:1.75rem;margin:0;letter-spacing:-.02em}
+.sec-head .rule{flex:1;height:1px;background:var(--border)}
+
+.eyebrow{font-size:.8rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:12px}
+
+/* ==========================================================================
+   Home page
+   ========================================================================== */
+.hero{padding:72px 0 0;display:grid;grid-template-columns:1.45fr .85fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,5vw,3.4rem);line-height:1.05;margin:0 0 18px;letter-spacing:-.03em}
+.hero p{color:var(--muted);font-size:1rem;margin:0 0 14px;max-width:56ch}
+.hero p.lede{color:var(--text);font-size:1.08rem}
+.portrait{position:relative;justify-self:center}
+.portrait img{width:230px;height:230px;border-radius:20px;object-fit:cover;display:block;
+  border:1px solid var(--border);box-shadow:var(--shadow);position:relative;z-index:1}
+.portrait::after{content:'';position:absolute;inset:-12px -12px 12px 12px;border-radius:22px;
+  border:1px solid var(--accent);opacity:.35}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+.about-grid p{margin:0 0 14px;color:var(--muted)}
+.about-grid p:first-child{color:var(--text)}
+
+.projects{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .24s,border-color .24s,box-shadow .24s}
+.pcard:hover{transform:translateY(-3px);
+  border-color:color-mix(in srgb,var(--accent) 45%,var(--border));box-shadow:var(--shadow)}
+.pthumb{aspect-ratio:16/9;overflow:hidden;background:var(--bg-elev);
+  border-bottom:1px solid var(--border);display:block}
+.pthumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+/* Placeholder tile for a card with no cleared image yet */
+.pthumb.ph{display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--bg-elev),color-mix(in srgb,var(--accent) 16%,var(--bg-elev)))}
+.pthumb.ph span{font-family:'Space Grotesk',sans-serif;font-size:.76rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pcard:hover .pthumb img{transform:scale(1.04)}
+.pbody{padding:19px 20px 20px;display:flex;flex-direction:column;flex:1}
+.pcat{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);
+  font-weight:600;margin-bottom:7px}
+.pbody h3{margin:0 0 8px;font-size:1.06rem;line-height:1.3;letter-spacing:-.01em}
+.pbody h3 a{color:var(--text)}
+.pcard:hover .pbody h3 a{color:var(--accent)}
+.pbody p{margin:0 0 15px;font-size:.92rem;color:var(--muted);flex:1}
+.plink{font-size:.89rem;font-weight:600;display:inline-flex;gap:6px;align-items:center}
+.plink span{transition:transform .2s;display:inline-block}
+.pcard:hover .plink span{transform:translateX(4px)}
+
+.ptags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:15px}
+.ptag{font-size:.74rem;padding:3px 9px;border-radius:6px;border:1px solid var(--border);
+  color:var(--muted)}
+
+.contact-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.contact-box p{color:var(--muted);margin:0;max-width:40ch}
+
+/* ==========================================================================
+   Project pages
+   ========================================================================== */
+.phead{padding:52px 0 0}
+.back{font-size:.88rem;color:var(--muted);font-weight:500;display:inline-block;margin-bottom:22px}
+.back:hover{color:var(--accent)}
+.phead h1{font-size:clamp(1.9rem,3.6vw,2.6rem);line-height:1.12;margin:0 0 16px;letter-spacing:-.025em}
+.phead .lede{font-size:1.06rem;color:var(--text);margin:0 0 18px;max-width:70ch}
+.phead .ptags{margin-bottom:0}
+
+.prose p{color:var(--muted);margin:0 0 16px;max-width:76ch}
+.prose ul{color:var(--muted);margin:0 0 16px;padding-left:20px;max-width:76ch}
+.prose li{margin-bottom:7px}
+.prose h3{font-size:1.06rem;margin:26px 0 10px;letter-spacing:-.01em;color:var(--text)}
+.prose code{background:var(--accent-soft);border:1px solid var(--border);border-radius:5px;
+  padding:1px 6px;font-size:.88em}
+.prose strong{color:var(--text);font-weight:600}
+
+/* Hero media at the top of a project page.
+   No forced aspect ratio: the asset keeps its own shape so nothing is cropped,
+   capped in width so a tall image cannot dominate the page. */
+.hero-media{margin:32px auto 0;border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;background:var(--bg-elev);display:block;width:fit-content;max-width:680px}
+.hero-media img,.hero-media video{width:100%;height:auto;display:block}
+
+/* Image gallery */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:22px 0 0}
+/* A single figure should not stretch the full column width */
+.gallery.one{grid-template-columns:minmax(0,520px)}
+.gallery figure{margin:0;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;transition:transform .24s,border-color .24s}
+.gallery figure:hover{transform:translateY(-3px);
+  border-color:color-mix(in srgb,var(--accent) 45%,var(--border))}
+.gallery img{width:100%;aspect-ratio:4/3;object-fit:contain;background:var(--bg-elev);
+  display:block;cursor:zoom-in;border-bottom:1px solid var(--border)}
+.gallery figcaption{padding:12px 15px;font-size:.85rem;color:var(--muted);line-height:1.45}
+
+/* Video gallery (click to open the modal) */
+.video-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:22px 0 0}
+.video-gallery.cols-3{grid-template-columns:repeat(3,1fr)}
+.video-gallery figure{margin:0;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;cursor:pointer;
+  transition:transform .24s,border-color .24s}
+.video-gallery figure:hover{transform:translateY(-3px);
+  border-color:color-mix(in srgb,var(--accent) 45%,var(--border))}
+.video-gallery video{width:100%;aspect-ratio:3/2;object-fit:cover;background:#000;display:block;
+  border-bottom:1px solid var(--border)}
+.video-gallery figcaption{padding:12px 15px;font-size:.85rem;color:var(--muted);
+  display:flex;align-items:center;gap:7px}
+.video-gallery figcaption::before{content:'\25B6';font-size:.62rem;color:var(--accent)}
+
+/* Step tracker used on the autonomous robot page */
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 0;padding:0;list-style:none;
+  counter-reset:step}
+.steps li{flex:1 1 130px}
+.steps a{display:block;height:100%;padding:12px 14px;border-radius:10px;background:var(--surface);
+  border:1px solid var(--border);font-size:.84rem;font-weight:500;color:var(--muted);
+  line-height:1.35;transition:.2s}
+.steps a::before{counter-increment:step;content:counter(step,decimal-leading-zero);
+  display:block;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;
+  color:var(--accent);margin-bottom:5px;letter-spacing:.06em}
+.steps a:hover{color:var(--text);border-color:color-mix(in srgb,var(--accent) 45%,var(--border));
+  transform:translateY(-2px)}
+
+/* ---------- Lightbox ---------- */
+#lightbox{position:fixed;inset:0;background:rgba(4,8,13,.92);display:none;
+  justify-content:center;align-items:center;z-index:100;backdrop-filter:blur(8px);cursor:zoom-out}
+#lightbox.active{display:flex}
+#lightbox img{max-width:92%;max-height:92%;border-radius:12px;box-shadow:0 12px 48px rgba(0,0,0,.6)}
+
+/* ---------- Video modal ---------- */
+/* The modal always fits the viewport: the media area takes whatever height is
+   left over and the clip scales down into it, so nothing needs scrolling. */
+#videoModal{position:fixed;inset:0;background:rgba(4,8,13,.94);display:none;
+  justify-content:center;align-items:center;z-index:100;backdrop-filter:blur(8px);
+  overflow:hidden;padding:44px 20px 24px}
+#videoModal.active{display:flex}
+.vm-content{max-width:1000px;width:100%;height:100%;display:flex;flex-direction:column;gap:16px}
+.vm-media{flex:1 1 auto;min-height:0;display:flex;gap:14px;justify-content:center;align-items:center}
+.vm-media video,.vm-media img{max-height:100%;max-width:100%;width:auto;height:auto;
+  object-fit:contain;border-radius:12px;border:1px solid var(--border);background:#000;display:block}
+.vm-media img[hidden]{display:none}
+.vm-media.has-image > *{max-width:calc(50% - 7px)}
+.vm-text{flex:0 0 auto;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px 22px;max-height:32vh;overflow-y:auto}
+.vm-text h3{margin:0 0 8px;font-size:1.12rem;letter-spacing:-.01em}
+.vm-text p{margin:0;color:var(--muted);font-size:.94rem}
+.vm-close{position:fixed;top:16px;right:22px;width:38px;height:38px;border-radius:10px;
+  background:var(--surface);border:1px solid var(--border);color:var(--text);
+  font-size:1.2rem;line-height:1;cursor:pointer;z-index:101}
+.vm-close:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- Footer ---------- */
+footer{margin-top:70px;border-top:1px solid var(--border);padding:24px 0;
+  font-size:.85rem;color:var(--muted);display:flex;justify-content:space-between;
+  gap:12px;flex-wrap:wrap}
+
+/* ---------- Responsive ---------- */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:34px;padding:48px 0 0}
+  .portrait{justify-self:start}
+  .portrait img{width:150px;height:150px}
+  .about-grid{grid-template-columns:1fr;gap:0}
+  .nav-links a{display:none}
+  .vm-media.has-image{flex-direction:column}
+  .vm-media.has-image > *{max-width:100%;max-height:calc(50% - 7px)}
+}
+@media(max-width:680px){
+  .projects{grid-template-columns:1fr}
+  .video-gallery,.video-gallery.cols-3{grid-template-columns:1fr}
+  .wrap,.nav-in{padding-left:20px;padding-right:20px}
+  section{padding-top:52px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important;animation:none !important}
+  .pcard:hover,.gallery figure:hover,.video-gallery figure:hover,.steps a:hover{transform:none}
+}

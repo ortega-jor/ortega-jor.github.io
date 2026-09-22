@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Non-Destructive Inspection for Battery Cell Manufacturing | Jorge Ortega</title>
+<meta name="description" content="Eight-month engineering co-op at Titan Advanced Energy Solutions, working on ultrasound systems for non-destructive inspection of lithium-ion battery cells." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="../index.html" class="brand">Jorge Ortega</a>
+    <div class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <button class="tt" id="themeToggle" aria-label="Toggle light and dark theme">&#9680;</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="phead">
+    <a class="back" href="../index.html#projects">&#8592; All projects</a>
+    <div class="eyebrow">Engineering Co-op · 8 months</div>
+    <h1>Non-Destructive Inspection for Battery Cell Manufacturing</h1>
+    <p class="lede">Ultrasound and Battery Science Intern at Titan Advanced Energy Solutions, January to August 2026.</p>
+    <div class="ptags">
+      <span class="ptag">Python</span><span class="ptag">Jupyter</span><span class="ptag">Signal processing</span>
+      <span class="ptag">Ultrasound</span><span class="ptag">Optimization</span><span class="ptag">Test automation</span>
+    </div>
+  </header>
+
+  <div class="hero-media">
+    <img src="../assets/images/titan/waveform-banner.jpg" alt="Ultrasound waveform">
+  </div>
+
+  <section>
+    <div class="sec-head"><h2>Role Overview</h2><span class="rule"></span></div>
+    <div class="prose">
+      <p>
+        Worked within Titan's battery science team on ultrasound systems used to non-destructively
+        inspect cylindrical and prismatic cells, improving how fast, how accurately, and how
+        consistently defects are detected.
+      </p>
+    </div>
+    <div class="gallery">
+      <figure>
+        <img src="../assets/images/titan/cell-interrogation.jpg" alt="Diagram of ultrasound signal travelling through a battery cell" loading="lazy">
+        <figcaption>How an ultrasound signal travelling through a cell produces an imprint of its internal morphology</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/titan/ct-vs-ultrasound.jpg" alt="CT scan compared with an ultrasound scan of a cell" loading="lazy">
+        <figcaption>CT scan compared with an ultrasound scan of the same cell</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Projects Delivered</h2><span class="rule"></span></div>
+    <div class="prose">
+      <h3>Fixture swapping and spatial alignment protocol</h3>
+      <p>
+        Engineered a standardized protocol for swapping and spatially aligning the cell fixtures that
+        hold cylindrical cells inside the ultrasound tank, removing operator-to-operator variability and
+        giving a repeatable alignment reference across different cell dimensions.
+      </p>
+    </div>
+    <div class="gallery">
+      <figure>
+        <img src="../assets/images/titan/tof-tilt-error.jpg" alt="Diagram of verticality tilt error and its effect on Time-of-Flight" loading="lazy">
+        <figcaption>Verticality (tilt) error: a cell axis off vertical makes the Time-of-Flight at the top and bottom of the same scan mismatch</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/titan/tof-rotational-offset.jpg" alt="Diagram of rotational axial offset and its effect on Time-of-Flight" loading="lazy">
+        <figcaption>Rotational (axial) offset: a cell off the rotation axis makes Time-of-Flight oscillate once per revolution</figcaption>
+      </figure>
+    </div>
+    <div class="prose" style="margin-top:22px">
+      <h3>Transducer characterization tool</h3>
+      <p>
+        Characterized a batch of air-coupled transducers across time-domain and frequency-domain
+        features, then built an interactive Python tool to navigate the dataset, compare waveforms and
+        spectra, and rank sensor responses. A maximum-weight matching algorithm ranks the optimal
+        transmitter and receiver pairings from user-selected features and weightings.
+      </p>
+    </div>
+    <div class="gallery one">
+      <figure>
+        <img src="../assets/images/titan/transducer-rig.jpg" alt="Air-coupled transducer test rig" loading="lazy">
+        <figcaption>Test rig used to interrogate each transducer pair</figcaption>
+      </figure>
+    </div>
+    <div class="prose" style="margin-top:22px">
+      <h3>Sensor array placement optimizer</h3>
+      <p>
+        Determined the optimal spatial configuration for an inspection array mounted on a gantry
+        travelling perpendicular to a moving electrode manufacturing line. The tool takes electrode
+        width, line speed, gantry speed and sensor count, solves for the configuration that maximizes
+        surface coverage, and visualizes the combined sensor trajectories alongside quality metrics such
+        as the largest defect that could pass uninspected.
+      </p>
+    </div>
+    <div class="gallery one">
+      <figure>
+        <img src="../assets/images/titan/array-trajectories.jpg" alt="Plot of combined sensor trajectories across the electrode" loading="lazy">
+        <figcaption>Combined sensor trajectories across the electrode, with the coverage angle marked</figcaption>
+      </figure>
+    </div>
+    <div class="prose" style="margin-top:22px">
+      <h3>Calibration and drift monitoring</h3>
+      <p>
+        Established repeatable reference baselines across multi-week battery cycling campaigns using a
+        known-density prismatic block, quantifying acoustic drift and restoring transducer alignment
+        after hardware reconfigurations or fixture swaps.
+      </p>
+    </div>
+    <div class="gallery">
+      <figure>
+        <img src="../assets/images/titan/ur10-calibration.jpg" alt="UR10 arm positioning a transducer over the calibration block in the tank" loading="lazy">
+        <figcaption>UR10 arm positioning the transducer over the known-density block used as the calibration reference</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/titan/drift-monitoring.jpg" alt="Signal drift plots across a cycling campaign" loading="lazy">
+        <figcaption>Reflection and transmission signal drift tracked across a cycling campaign</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Jorge Ortega</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </footer>
+</div>
+
+<div id="lightbox"><img src="" alt=""></div>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
