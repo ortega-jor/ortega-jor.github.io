@@ -68,8 +68,17 @@
       <h3>Fixture swapping and spatial alignment protocol</h3>
       <p>
         Engineered a standardized protocol for swapping and spatially aligning the cell fixtures that
-        hold cylindrical cells inside the ultrasound tank, removing operator-to-operator variability and
-        giving a repeatable alignment reference across different cell dimensions.
+        hold cylindrical cells inside the ultrasound tank. The sequence removes operator-to-operator
+        variability and gives a repeatable alignment reference across different cell dimensions.
+      </p>
+      <ul>
+        <li><strong>Precision:</strong> Time-of-Flight alignment tightened from under 1 µs to roughly 250 ns.</li>
+        <li><strong>Throughput:</strong> the physical alignment and changeover process dropped from a full eight-hour workday to four hours.</li>
+      </ul>
+      <p>
+        The two error modes the protocol corrects for are shown below. A cell that is not perfectly
+        vertical makes the Time-of-Flight mismatch between the top and bottom of a scan, and a cell that
+        is not centred on the fixture's rotation axis makes it oscillate once per revolution.
       </p>
     </div>
     <div class="gallery">
@@ -85,11 +94,16 @@
     <div class="prose" style="margin-top:22px">
       <h3>Transducer characterization tool</h3>
       <p>
-        Characterized a batch of air-coupled transducers across time-domain and frequency-domain
-        features, then built an interactive Python tool to navigate the dataset, compare waveforms and
-        spectra, and rank sensor responses. A maximum-weight matching algorithm ranks the optimal
-        transmitter and receiver pairings from user-selected features and weightings.
+        Characterized 70 air-coupled transducers across time-domain and frequency-domain features, then
+        built an interactive visualization tool to compare them and match the optimal transmitter and
+        receiver pairs.
       </p>
+      <ul>
+        <li><strong>Testing methodology:</strong> a cross-referenced acoustic interrogation matrix, using one reference transducer as the transmitter against the other 69 as receivers, then reversing the configuration.</li>
+        <li><strong>Signal processing:</strong> signals extracted in a Jupyter notebook to compute features across the time domain, the frequency domain and signal envelopes.</li>
+        <li><strong>Tooling:</strong> an interactive Python interface to navigate the dataset, compare signals, visualize waveforms and spectra, and rank sensor responses.</li>
+        <li><strong>Optimization:</strong> the Blossom maximum-weight matching algorithm, which computes and ranks the globally optimal transmitter and receiver pairs from user-selected features and weightings.</li>
+      </ul>
     </div>
     <div class="gallery one">
       <figure>
