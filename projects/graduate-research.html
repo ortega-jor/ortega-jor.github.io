@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Harpy Actuator Modeling | Jorge Ortega</title>
+<meta name="description" content="Graduate research at the Silicon Synapse Lab, Northeastern University: building and characterising the actuators of the Harpy robot leg toward a learned actuator model for impedance control." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="../index.html" class="brand">Jorge Ortega</a>
+    <div class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <button class="tt" id="themeToggle" aria-label="Toggle light and dark theme">&#9680;</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="phead">
+    <a class="back" href="../index.html#projects">&#8592; All projects</a>
+    <div class="eyebrow">Graduate Research · Silicon Synapse Lab</div>
+    <h1>Learned Actuator Modeling for Harpy's Leg</h1>
+    <p class="lede">MS thesis work at Northeastern University: building and characterising the actuators of the Harpy robot leg, toward a learned model of their dynamics for high-fidelity impedance control.</p>
+    <div class="ptags">
+      <span class="ptag">Impedance control</span><span class="ptag">System identification</span>
+      <span class="ptag">SolidWorks</span><span class="ptag">Harmonic drives</span>
+      <span class="ptag">3D printing</span><span class="ptag">Machining</span>
+    </div>
+  </header>
+
+  <div class="hero-media">
+    <img src="../assets/images/ssl/full-leg.jpg" alt="The assembled Harpy leg">
+  </div>
+
+  <section>
+    <div class="sec-head"><h2>Aim</h2><span class="rule"></span></div>
+    <div class="prose">
+      <p>
+        Analytical actuator models leave out effects that matter on real hardware: compliance, damping,
+        friction and control delays. The thesis set out to learn a model of Harpy's actuator dynamics
+        from measured data, and use it inside a joint-level impedance controller so the leg could be
+        commanded in terms of stiffness and damping rather than position alone.
+      </p>
+      <p>
+        Getting there needed hardware first. Before any data could be collected, both actuators of the
+        leg had to be assembled, debugged and shown to run cleanly, and a test bench had to exist to
+        measure them on. That hardware work is what this page is mostly about.
+      </p>
+      <p>
+        <strong>Note:</strong> The project was left in standby when I started my co-op, so the modelling
+        and data collection stages were not reached. What follows is the work that was completed.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Actuator Debugging</h2><span class="rule"></span></div>
+    <div class="prose">
+      <p>
+        The first assembled joint had far more friction than it should have, and tracking down the cause
+        took several weeks of stripping it down and measuring. The problems compounded on each other:
+      </p>
+      <ul>
+        <li>The stator sat off-centre relative to the rotor, leaving roughly a 1 mm gap on one side while the magnets pulled toward the other.</li>
+        <li>The parts as machined were out of tolerance against each other. The stator mount measured 15.03 mm going into a 14.96 mm stator bore, and the shaft 4.99 mm going into a 4.94 mm bearing bore. Every mating pair was off in the direction that makes an interference fit.</li>
+        <li>The stator mount had been sanded down by hand to correct that, so it ended up loose instead. The fix needed a CNC, not sandpaper.</li>
+        <li>Heat inserts in the upper housing had not gone deep enough, and the melted plastic rings around them stopped the stator mount sitting flat.</li>
+        <li>The wave generator sat too far inside the circular spline, which dropped the shaft below its correct height.</li>
+        <li>The shaft itself turned out to be slightly bent and unevenly machined. Rolling it on a flat surface showed a small oscillation at one end, and with the stator removed the rotor visibly wobbled instead of spinning in place.</li>
+      </ul>
+      <p>
+        I estimated at the time that around 80% of the friction was coming from inside the harmonic
+        housing. Taking the harmonic drive out confirmed it. The shaft had been poorly machined, and the
+        lab manager confirmed the university did not have a machine precise enough to remake it to
+        tolerance.
+      </p>
+    </div>
+    <div class="gallery cols-2">
+      <figure>
+        <img src="../assets/images/ssl/upper-housing.jpg" alt="Side view showing the stator mount sitting proud of the upper housing" loading="lazy"
+             data-after="../assets/images/ssl/upper-housing-after.jpg"
+             data-after-alt="The stator mount sitting flat against the housing after the heat inserts were reseated"
+             data-before-label="Before" data-after-label="After">
+        <figcaption>Edge-on view of the stator mount, showing the gap where it was not sitting flat against the printed housing. Click to compare before and after the fix</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/harmonic-drive-deep.jpg" alt="Wave generator sitting too deep inside the circular spline" loading="lazy"
+             data-lightbox="../assets/images/ssl/harmonic-drive-cleaned.jpg"
+             data-lightbox-alt="The circular spline cleaned and regreased"
+             data-after="../assets/images/ssl/harmonic-drive-remounted.jpg"
+             data-after-alt="The harmonic drive remounted into the actuator"
+             data-before-label="Cleaned and regreased" data-after-label="Remounted">
+        <figcaption>The wave generator sitting too deep inside the circular spline, which is what dropped the shaft below its correct height. Click to see the drive cleaned, regreased and remounted</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/tol-stator-bore.jpg" alt="Caliper measuring the stator inner diameter at 14.96 mm" loading="lazy"
+             data-set="../assets/images/ssl/tol-stator-bore.jpg|../assets/images/ssl/tol-stator-mount.jpg|../assets/images/ssl/tol-bearing.jpg|../assets/images/ssl/tol-shaft.jpg"
+             data-set-labels="Stator bore 14.96 mm|Stator mount 15.03 mm|Bearing bore 4.94 mm|Shaft 4.99 mm">
+        <figcaption>Measuring the parts as supplied. Every mating pair came out of tolerance the wrong way, which is what made the first actuator bind. Click to see all four measurements</figcaption>
+      </figure>
+      <figure class="vid" data-video="../assets/videos/ssl-previews/rolling-shaft.mp4" data-title="Rolling the shaft on a flat surface" data-image="../assets/images/ssl/shaft-machining.jpg" data-description="Rolling the motor shaft across a flat surface to check it for straightness. A small oscillation is visible at the top end. Not a rigorous measurement, but it was the first clear indication that the shaft was bent, which matched the wobble seen in the rotor once the stator was removed. The shaft was then turned down on the lathe to bring the diameter to size, taking material off in small passes and test-fitting against the bearing as it went. The same machine was used to bring the custom stator mount to size.">
+        <video autoplay loop muted playsinline poster="../assets/images/ssl/posters/rolling-shaft.jpg"><source src="../assets/videos/ssl-previews/rolling-shaft.mp4" type="video/mp4"></video>
+        <figcaption>Shaft straightness check, and the fix on the lathe</figcaption>
+      </figure>
+      <figure class="vid" data-video="../assets/videos/ssl-previews/rotor-vibration-side.mp4" data-title="Rotor vibration, side view" data-description="The actuator running under velocity control before the rebuild. This is the symptom the whole investigation started from: instead of turning smoothly, the rotor vibrates as it spins. Everything documented above came out of chasing where that vibration was coming from.">
+        <video autoplay loop muted playsinline poster="../assets/images/ssl/posters/rotor-vibration-side.jpg"><source src="../assets/videos/ssl-previews/rotor-vibration-side.mp4" type="video/mp4"></video>
+        <figcaption>The original symptom: rotor vibration</figcaption>
+      </figure>
+      <figure class="vid" data-video="../assets/videos/ssl-previews/rotor-vibration-top.mp4" data-title="Off-axis rotation and stator movement, top view" data-description="The same test seen from above. The bent and unevenly machined shaft makes the rotor turn off its axis rather than spinning in place, and because the stator mount was loose the stator shifts as the rotor sweeps past it. The two faults feed each other, which is why the friction changed depending on rotor position.">
+        <video autoplay loop muted playsinline poster="../assets/images/ssl/posters/rotor-vibration-top.jpg"><source src="../assets/videos/ssl-previews/rotor-vibration-top.mp4" type="video/mp4"></video>
+        <figcaption>Off-axis rotation and stator movement</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Knee Joint Build</h2><span class="rule"></span></div>
+    <div class="prose">
+      <p>
+        With the first actuator working, I built the second one for the knee. The harmonic drive housing
+        is a single 3D print of ten and a half hours with six programmed pauses, each needing a part
+        inserted mid-print: two carbon fibre plates, three ball bearings and eight heat inserts. There
+        was no documentation of what each pause was for, so I photographed every one as I went and wrote
+        the sequence up.
+      </p>
+      <p>
+        Assembly came down to tolerances. Both bearings measured under their nominal bores, by 0.04 mm
+        and 0.06 mm, and the stainless shaft measured 4.99 mm where it needed to clear a 5 mm bearing.
+        I machined the stator mount and the shaft to fit on the lathe, taking material off in small
+        passes and test-fitting as I went, since there was no margin to overshoot.
+      </p>
+    </div>
+    <div class="gallery cols-2">
+      <figure>
+        <img src="../assets/images/ssl/knee-pause-inserts.jpg" alt="Heat inserts being placed during a mid-print pause" loading="lazy">
+        <figcaption>One of the six mid-print pauses, placing the heat inserts and the carbon fibre plate before the print continues</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/knee-printed.jpg" alt="The finished custom knee joint print" loading="lazy">
+        <figcaption>The finished custom knee joint print</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/knee-hd-mounted.jpg" alt="Harmonic drive mounted into the custom printed housing" loading="lazy">
+        <figcaption>The harmonic drive mounted into the custom printed housing</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/knee-complete.jpg" alt="The completed knee joint seen from above" loading="lazy"
+             data-set="../assets/images/ssl/knee-complete.jpg|../assets/images/ssl/knee-complete-side.jpg|../assets/images/ssl/knee-complete-bottom.jpg"
+             data-set-labels="Top view|Side view|Bottom view">
+        <figcaption>The finished knee joint. Click to see the assembled actuator from the side and underneath</figcaption>
+      </figure>
+      <figure class="vid" data-video="../assets/videos/ssl-previews/knee-test.mp4" data-title="Knee joint back-and-forth test" data-description="The completed knee actuator driven back and forth on the test bench, checking travel and repeatability before the joint was fitted into the full leg.">
+        <video autoplay loop muted playsinline poster="../assets/images/ssl/posters/knee-test.jpg"><source src="../assets/videos/ssl-previews/knee-test.mp4" type="video/mp4"></video>
+        <figcaption>Knee joint driven back and forth</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/knee-test-setup.jpg" alt="Bench setup for the knee joint test" loading="lazy">
+        <figcaption>The bench setup for the joint test: programmable supply, driver board and the joint wired up</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Full Leg and Test Bench</h2><span class="rule"></span></div>
+    <div class="prose">
+      <p>
+        With both actuators tested individually, I assembled the full leg. The lab was out of the
+        ellipsoidal carbon fibre rods the design called for, so I designed and printed an adapter to
+        take rectangular stock instead. The rods were cut on a bandsaw with the extraction and PPE
+        needed for carbon fibre dust, and drilled using a printed guide so the hole spacing stayed
+        consistent.
+      </p>
+      <p>
+        The finished leg was mounted to a gantry through another printed adapter, giving the vertical
+        test bench the modelling work would have run on. The leg was complete mechanically. Electrical
+        wiring of the full assembly was the next step and was not reached.
+      </p>
+    </div>
+    <div class="gallery cols-2">
+      <figure>
+        <img src="../assets/images/ssl/leg-cad.jpg" alt="CAD model of the full leg" loading="lazy">
+        <figcaption>The original CAD model of the leg</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/rod-adapter.jpg" alt="Rectangular carbon fibre stock fitted with printed adapters" loading="lazy"
+             data-set="../assets/images/ssl/rod-adapter.jpg|../assets/images/ssl/cf-cutting.jpg"
+             data-set-labels="Adapted rod|Cutting the stock">
+        <figcaption>Adapting rectangular carbon fibre stock to stand in for the ellipsoidal rods the design called for. Click to see the saw the rods were cut on</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/actuators-closeup.jpg" alt="Close-up of the hip and knee actuators" loading="lazy"
+             data-set="../assets/images/ssl/actuators-closeup.jpg|../assets/images/ssl/actuators-closeup-top.jpg"
+             data-set-labels="Side on|From above">
+        <figcaption>Close-up of the two actuators on the assembled leg. Click for the view from above</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/foot-closeup.jpg" alt="Close-up of the foot and linkage" loading="lazy"
+             data-set="../assets/images/ssl/foot-closeup.jpg|../assets/images/ssl/leg-detail.jpg"
+             data-set-labels="Foot|Linkage detail">
+        <figcaption>Close-up of the foot. Click to see the sprung linkage that drives it</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/leg-on-gantry.jpg" alt="The assembled leg mounted on the gantry" loading="lazy">
+        <figcaption>The full assembly mounted on the gantry test bench</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/ssl/gantry-side.jpg" alt="Side view of the leg on the gantry" loading="lazy">
+        <figcaption>Side view of the leg on the gantry</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Modeling Approaches Considered</h2><span class="rule"></span></div>
+    <div class="prose">
+      <p>
+        Alongside the hardware I reviewed the literature on impedance control, system identification,
+        residual learning and neural network methods, and narrowed the modelling stage to three
+        candidate approaches. Choosing between them was the next decision point when the project stopped.
+      </p>
+      <ul>
+        <li><strong>Residual learning.</strong> Keep a basic physics model and train a network to predict the residual between it and the real actuator, then let the controller tune impedance parameters on top.</li>
+        <li><strong>Network for ground reaction force estimation.</strong> Estimate ground reaction forces from joint positions and velocities, avoiding the need for force sensors on the foot.</li>
+        <li><strong>Physics-informed neural network.</strong> Put the joint dynamics inside the network itself and identify the non-linear parameters directly: stiffness, friction, inertia, damping and the non-linear spring coefficient.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Jorge Ortega</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </footer>
+</div>
+
+<div id="lightbox">
+  <div class="lb-inner"></div>
+</div>
+
+<div id="videoModal">
+  <button class="vm-close" aria-label="Close">&times;</button>
+  <div class="vm-content">
+    <div class="vm-media">
+      <video controls autoplay loop playsinline></video>
+      <img hidden alt="Supporting detail">
+    </div>
+    <div class="vm-text">
+      <h3></h3>
+      <p></p>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
