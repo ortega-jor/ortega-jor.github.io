@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>In-Hand Manipulation with the Allegro Hand | Jorge Ortega</title>
+<meta name="description" content="Holding and reorienting a cube with an Allegro dexterous hand: an object-level impedance and quadratic programming force controller in MuJoCo, implemented from a 2020 RA-L paper, alongside a reinforcement learning policy in IsaacLab." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="../index.html" class="brand">Jorge Ortega</a>
+    <div class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <button class="tt" id="themeToggle" aria-label="Toggle light and dark theme">&#9680;</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="phead">
+    <a class="back" href="../index.html#projects">&#8592; All projects</a>
+    <div class="eyebrow">EECE 5552 Assistive Robotics · Final Project</div>
+    <h1>In-Hand Manipulation of a Cube with the Allegro Hand</h1>
+    <p class="lede">Holding and reorienting a cube with a four-finger Allegro hand, approached two ways: an object-level force controller reimplemented from a published paper, and a reinforcement learning policy trained from scratch.</p>
+    <div class="ptags">
+      <span class="ptag">Python</span><span class="ptag">MuJoCo</span><span class="ptag">IsaacLab</span>
+      <span class="ptag">Impedance control</span><span class="ptag">Quadratic programming</span><span class="ptag">Grasp modelling</span>
+    </div>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/arjun-2612/Inhand_Manipulation_Cube" target="_blank" rel="noopener">View code on GitHub &#8599;</a>
+      <a class="btn btn-ghost" href="../assets/documents/Allegro_InHand_Report.pdf" target="_blank" rel="noopener">Project report (PDF) &#8599;</a>
+    </div>
+  </header>
+
+  <div class="hero-media">
+    <img src="../assets/images/allegro/card.jpg" alt="The Allegro hand holding a cube, with contact force vectors drawn at each fingertip">
+  </div>
+
+  <section>
+    <div class="sec-head"><h2>Overview</h2><span class="rule"></span></div>
+    <div class="prose">
+      <p>
+        A dexterous hand holding an object closes a kinematic chain through the object itself. Each
+        fingertip can only push, never pull, so every contact force has to stay inside its friction
+        cone, and together they have to produce exactly the wrench that holds the object where it
+        should be. There is also more than one way to do it: a set of internal forces can squeeze the
+        object without moving it at all, which is what keeps it from slipping.
+      </p>
+      <p>
+        Arjun Viswanathan and I split the project in two. He built the reinforcement learning side,
+        training a policy in IsaacLab to reorient the cube to commanded orientations. I built the
+        model-based side in MuJoCo, reimplementing the object-level control framework of Pfanne et al.
+        from scratch.
+      </p>
+      <p>
+        <strong>Reference:</strong> M. Pfanne, M. Chalon, F. Stulp, H. Ritter and A. Albu-Schäffer,
+        "Object-Level Impedance Control for Dexterous In-Hand Manipulation", <em>IEEE Robotics and
+        Automation Letters</em>, vol. 5, no. 2, pp. 2987-2994, 2020.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Force Control in MuJoCo</h2><span class="rule"></span></div>
+    <div class="prose">
+      <p>
+        The controller works at the level of the object rather than the joints, and stacks three
+        terms that are mapped to joint torques through the hand Jacobian.
+      </p>
+
+      <h3>Object-level impedance</h3>
+      <p>
+        The grasp matrix relates object motion to contact motion, so a desired change in object pose
+        becomes a desired change in contact positions. A second term, projected into the nullspace of
+        the grasp matrix, pulls the contacts back toward the configuration they started in to correct
+        for slippage without moving the object. A spring-damper on the combined contact error gives
+        the impedance force.
+      </p>
+
+      <h3>Quadratic programming for the internal forces</h3>
+      <p>
+        Impedance alone poses the object but does not manage the internal forces or carry its dynamic
+        load. The total contact force splits into a minimum-norm part that produces the required
+        wrench and a part living in the nullspace of the grasp matrix, which squeezes without moving
+        anything. A quadratic program picks that second part: stay as close as possible to the desired
+        normal force at each contact, subject to the friction cone and to upper and lower bounds on
+        the normal force.
+      </p>
+
+      <h3>Nullspace control</h3>
+      <p>
+        With four joints per finger the force mapping has a nullspace of its own, so the joints can
+        drift toward their limits and lose manipulability without changing anything at the fingertips.
+        A nullspace torque regulates the third and fourth joints of each finger toward each other, and
+        is projected so it cannot disturb the contact forces.
+      </p>
+    </div>
+    <div class="gallery cols-2">
+      <figure class="vid" data-video="../assets/videos/allegro-previews/force-control.mp4" data-title="Force-controlled grasp in MuJoCo" data-description="The Allegro hand closing on the cube and holding it under the force controller. The pale arrows at each fingertip are the normal contact forces. The cube is held stably over a long run, with a little drift from the original pose.">
+        <video autoplay loop muted playsinline poster="../assets/images/allegro/posters/force-control.jpg"><source src="../assets/videos/allegro-previews/force-control.mp4" type="video/mp4"></video>
+        <figcaption>Grasping and holding under force control</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/allegro/mujoco-scene.jpg" alt="The Allegro hand and cube in the MuJoCo scene" loading="lazy">
+        <figcaption>The simulation scene. The cube carries a different pattern on each face, so the commanded orientation can be checked by eye</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/allegro/plot-qp-forces.jpg" alt="Per-finger contact forces solved by the quadratic program" loading="lazy"
+             data-set="../assets/images/allegro/plot-qp-forces.jpg|../assets/images/allegro/plot-impedance-forces.jpg|../assets/images/allegro/plot-nullspace-forces.jpg"
+             data-set-labels="QP forces|Impedance forces|Nullspace forces">
+        <figcaption>Contact forces per finger from the quadratic program. Click to compare the QP, impedance and nullspace terms</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/images/allegro/plot-state-tracking.jpg" alt="Cube pose and velocity tracking under force control" loading="lazy"
+             data-set="../assets/images/allegro/plot-state-tracking.jpg|../assets/images/allegro/plot-total-force.jpg"
+             data-set-labels="Object state tracking|Total force on the object">
+        <figcaption>The cube's position, orientation and velocities while being held. Click to see the summed contact force alongside it</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>What Worked and What Did Not</h2><span class="rule"></span></div>
+    <div class="prose">
+      <p>
+        The hand holds the cube stably for long runs, with a little drift from the starting pose over
+        time, and the forces it settles on are sensible. Three things did not come out cleanly:
+      </p>
+      <ul>
+        <li><strong>The QP unloads two fingers.</strong> It consistently pushes the index and ring fingers away from the sides of the cube and holds with the middle finger and thumb alone. The grasp is stable, but we never fully worked out why the solver prefers it.</li>
+        <li><strong>The nullspace torques diverge.</strong> Implemented as written, they grow until they swamp the impedance and QP torques. Making the matrix dimensions agree required changes to the published equations, so either something is missing from them or a dimension is stated wrongly.</li>
+        <li><strong>Grasp reconfiguration is not reproducible from the paper.</strong> Releasing and replacing a contact to regrip is described as coming from other work, which is neither cited nor outlined, and there is no public code for the framework.</li>
+      </ul>
+      <p>
+        Reimplementing a paper with no reference implementation is most of the work here, and finding
+        where it is underspecified is part of the result.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Reinforcement Learning in IsaacLab</h2><span class="rule"></span></div>
+    <div class="prose">
+      <p>
+        The other half of the project, built by Arjun, learns the task instead of solving for it. A
+        PPO policy is trained in IsaacLab across many parallel environments, taking the hand's joint
+        state and the cube's full kinematic state relative to the hand, and commanding smoothed joint
+        positions. The reward tracks the angle between the cube's orientation and a randomly sampled
+        quaternion goal, with a bonus for reaching it and small penalties on joint velocity and action
+        rate to stop the fingers jittering.
+      </p>
+      <p>
+        Friction, link and object masses, joint stiffness and damping are all randomised during
+        training, which is what makes the policy robust to the model mismatch it would meet on real
+        hardware. It reaches each new goal orientation in one to two seconds and keeps going as new
+        ones are sampled.
+      </p>
+      <p>
+        The contrast is the interesting part. The force controller is explicit about contacts,
+        friction and internal forces, and every term can be plotted and argued with, which is what the
+        figures above are. The policy is none of those things, uses the whole hand rather than just
+        the fingertips, and handles mass and friction it was never told about.
+      </p>
+    </div>
+    <div class="gallery one">
+      <figure class="vid" data-video="../assets/videos/allegro-previews/rl-repose.mp4" data-title="Trained policy reposing the cube" data-description="The trained PPO policy turning the cube toward a commanded orientation. The floating cube above the hand is the goal; when it is matched, a new one is sampled. This half of the project was built by Arjun Viswanathan.">
+        <video autoplay loop muted playsinline poster="../assets/images/allegro/posters/rl-repose.jpg"><source src="../assets/videos/allegro-previews/rl-repose.mp4" type="video/mp4"></video>
+        <figcaption>Trained policy reposing the cube</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Jorge Ortega</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </footer>
+</div>
+
+<div id="lightbox">
+  <div class="lb-inner"></div>
+</div>
+
+<div id="videoModal">
+  <button class="vm-close" aria-label="Close">&times;</button>
+  <div class="vm-content">
+    <div class="vm-media">
+      <video controls autoplay loop playsinline></video>
+      <img hidden alt="Supporting detail">
+    </div>
+    <div class="vm-text">
+      <h3></h3>
+      <p></p>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
